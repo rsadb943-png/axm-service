@@ -504,7 +504,18 @@
   </div>
 
 </div>
+<div id="carsModal" class="modal hidden">
+  <div class="modal-box">
 
+    <div class="modal-head">
+      <h2>Avtomobillər</h2>
+      <button class="close" onclick="closeCars()">×</button>
+    </div>
+
+    <p>Avtomobillər bölməsi</p>
+
+  </div>
+</div>
 
 <script>
 
@@ -577,8 +588,23 @@ function showApp(){
 
   loadOrders();
 }
+function openCars() {
+  const carsModal = document.getElementById("carsModal");
 
-function opencars(){ alert("Avtomobillər bölməsi açıldı");}
+  if (carsModal) {
+    carsModal.classList.remove("hidden");
+  } else {
+    alert("Avtomobillər pəncərəsi hələ yaradılmayıb");
+  }
+}
+function closeCars() {
+  const carsModal = document.getElementById("carsModal");
+
+  if (carsModal) {
+    carsModal.classList.add("hidden");
+  }
+}
+
 function openNewOrder(){
 
   document
