@@ -3,374 +3,177 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>AXM Group Service</title>
+<title>AXM Group Service V4</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;background:#071017;color:#fff;font-family:Arial,sans-serif}
-button,input,select,textarea{font:inherit}
-.scroll{width:100%;min-height:100vh;background:#071017}
-.stage{position:relative;width:100%;max-width:1536px;aspect-ratio:3/2;margin:auto;background:#071017;overflow:hidden}
-.bg{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none}
-.hot{position:absolute;border:0;background:transparent;cursor:pointer;border-radius:8px}
+*{box-sizing:border-box}html,body{margin:0;background:#071017;color:#fff;font-family:Arial,sans-serif}button,input,select,textarea{font:inherit}
+.scroll{width:100%;min-height:100vh;background:#071017}.stage{position:relative;width:100%;max-width:1536px;aspect-ratio:3/2;margin:auto;background:#071017;overflow:hidden}
+.bg{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none}.hot{position:absolute;border:0;background:transparent;cursor:pointer;border-radius:8px}
 .hot:hover{outline:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.025)}
-#home{left:.8%;top:13.1%;width:13.7%;height:5.3%}
-#newjob{left:85.3%;top:14.7%;width:13.2%;height:6.2%}
-#newjob2{left:1.1%;top:19.1%;width:12.8%;height:4.4%}
-#cars{left:1.1%;top:24.3%;width:12.8%;height:4.5%}
-#customers{left:1.1%;top:29.5%;width:12.8%;height:4.4%}
-#orders{left:1.1%;top:34.7%;width:12.8%;height:4.4%}
-#parts{left:1.1%;top:39.9%;width:12.8%;height:4.4%}
-#warehouse{left:1.1%;top:45.2%;width:12.8%;height:4.4%}
-#finance{left:1.1%;top:50.4%;width:12.8%;height:4.4%}
-#masters{left:1.1%;top:55.7%;width:12.8%;height:4.4%}
-#warranty{left:1.1%;top:60.9%;width:12.8%;height:4.4%}
-#reports{left:1.1%;top:66.2%;width:12.8%;height:4.4%}
-#calendar{left:1.1%;top:71.4%;width:12.8%;height:4.4%}
-#messages{left:1.1%;top:76.7%;width:12.8%;height:4.4%}
-#settings{left:1.1%;top:81.9%;width:12.8%;height:4.4%}
-
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;place-items:center;padding:18px;z-index:20}
-.overlay.open{display:grid}
-.panel{width:min(1100px,96vw);max-height:92vh;overflow:auto;background:#101a21;border:1px solid #3a4b56;border-radius:14px;box-shadow:0 30px 90px #000;padding:20px}
-.panel.small{width:min(720px,96vw)}
-.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
-.head h2{margin:0;font-size:24px}.x{border:0;background:none;color:#fff;font-size:30px;cursor:pointer}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.search{flex:1;min-width:220px;background:#091117;color:#fff;border:1px solid #344650;border-radius:8px;padding:11px 12px}
-.primary{border:0;border-radius:8px;background:#e52631;color:#fff;padding:11px 16px;font-weight:700;cursor:pointer}
-.secondary{border:1px solid #40515d;border-radius:8px;background:#17232b;color:#fff;padding:10px 14px;cursor:pointer}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.form input,.form select,.form textarea{background:#091117;color:#fff;border:1px solid #344650;border-radius:8px;padding:12px;min-width:0}
-.form textarea{grid-column:1/-1;min-height:90px;resize:vertical}.full{grid-column:1/-1}
-.tablewrap{overflow:auto;border:1px solid #263741;border-radius:10px}
-table{width:100%;border-collapse:collapse;min-width:900px}
-th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #263741;font-size:14px}
-th{background:#17242c;color:#c9d3d9;position:sticky;top:0}tr:hover td{background:#132029}
-.badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#23343e;font-size:12px}
-.empty{padding:34px;text-align:center;color:#9daab2}
-.actions{display:flex;gap:6px}.actions button{padding:6px 9px;border-radius:6px;border:1px solid #40515d;background:#17232b;color:#fff;cursor:pointer}
-.cardgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
-.stat{background:#14212a;border:1px solid #293a45;border-radius:10px;padding:14px}.stat b{font-size:22px;display:block;margin-top:5px}
-.toast{position:fixed;right:18px;bottom:18px;background:#121d24;border:1px solid #31434e;padding:13px 16px;border-radius:9px;display:none;z-index:50}
-.muted{color:#9ba8b0;font-size:13px}
-.money.plus{color:#58d68d}.money.minus{color:#ff6b6b}
-.customer-name{font-weight:700}
-.customer-detail{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.customer-detail .stat{min-height:78px}
-@media(max-width:760px){
- .stage{width:1536px;height:1024px;transform-origin:top left}.scroll{overflow:auto;width:100vw;height:100vh}
- .form{grid-template-columns:1fr}.form textarea,.full{grid-column:auto}.cardgrid{grid-template-columns:1fr 1fr}
- .panel{padding:14px}.head h2{font-size:20px}
-}
+#home{left:.8%;top:13.1%;width:13.7%;height:5.3%}#newjob{left:85.3%;top:14.7%;width:13.2%;height:6.2%}#newjob2{left:1.1%;top:19.1%;width:12.8%;height:4.4%}
+#cars{left:1.1%;top:24.3%;width:12.8%;height:4.5%}#customers{left:1.1%;top:29.5%;width:12.8%;height:4.4%}#orders{left:1.1%;top:34.7%;width:12.8%;height:4.4%}
+#parts{left:1.1%;top:39.9%;width:12.8%;height:4.4%}#warehouse{left:1.1%;top:45.2%;width:12.8%;height:4.4%}#finance{left:1.1%;top:50.4%;width:12.8%;height:4.4%}
+#masters{left:1.1%;top:55.7%;width:12.8%;height:4.4%}#warranty{left:1.1%;top:60.9%;width:12.8%;height:4.4%}#reports{left:1.1%;top:66.2%;width:12.8%;height:4.4%}
+#calendar{left:1.1%;top:71.4%;width:12.8%;height:4.4%}#messages{left:1.1%;top:76.7%;width:12.8%;height:4.4%}#settings{left:1.1%;top:81.9%;width:12.8%;height:4.4%}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;place-items:center;padding:18px;z-index:20}.overlay.open{display:grid}
+.panel{width:min(1180px,96vw);max-height:92vh;overflow:auto;background:#101a21;border:1px solid #3a4b56;border-radius:14px;box-shadow:0 30px 90px #000;padding:20px}.panel.small{width:min(720px,96vw)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.head h2{margin:0;font-size:24px}.x{border:0;background:none;color:#fff;font-size:30px;cursor:pointer}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.search{flex:1;min-width:220px;background:#091117;color:#fff;border:1px solid #344650;border-radius:8px;padding:11px 12px}
+.primary{border:0;border-radius:8px;background:#e52631;color:#fff;padding:11px 16px;font-weight:700;cursor:pointer}.secondary,.danger{border:1px solid #40515d;border-radius:8px;background:#17232b;color:#fff;padding:10px 14px;cursor:pointer}.danger{border-color:#7b2d34;color:#ff9aa1}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form input,.form select,.form textarea{background:#091117;color:#fff;border:1px solid #344650;border-radius:8px;padding:12px;min-width:0}
+.form textarea{grid-column:1/-1;min-height:85px;resize:vertical}.full{grid-column:1/-1}.tablewrap{overflow:auto;border:1px solid #263741;border-radius:10px}
+table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid #263741;font-size:13px}th{background:#17242c;color:#c9d3d9;position:sticky;top:0}tr:hover td{background:#132029}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#23343e;font-size:12px}.empty{padding:34px;text-align:center;color:#9daab2}
+.actions{display:flex;gap:6px;flex-wrap:wrap}.actions button{padding:6px 9px;border-radius:6px;border:1px solid #40515d;background:#17232b;color:#fff;cursor:pointer}
+.cardgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.stat{background:#14212a;border:1px solid #293a45;border-radius:10px;padding:14px}.stat b{font-size:22px;display:block;margin-top:5px}
+.toast{position:fixed;right:18px;bottom:18px;background:#121d24;border:1px solid #31434e;padding:13px 16px;border-radius:9px;display:none;z-index:50}.muted{color:#9ba8b0;font-size:13px}.money.plus{color:#58d68d}.money.minus{color:#ff6b6b}
+.reportgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.reportbox{background:#14212a;border:1px solid #293a45;border-radius:10px;padding:18px}.reportbox b{display:block;font-size:28px;margin-top:8px}
+.settingrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.note{padding:12px;background:#0b141a;border:1px solid #293a45;border-radius:9px;margin:10px 0}.wa{color:#70e6a0}
+@media(max-width:760px){.stage{width:1536px;height:1024px;transform-origin:top left}.scroll{overflow:auto;width:100vw;height:100vh}.form,.settingrow{grid-template-columns:1fr}.form textarea,.full{grid-column:auto}.cardgrid,.reportgrid{grid-template-columns:1fr 1fr}.panel{padding:14px}.head h2{font-size:20px}}
 </style>
-</head>
-<body>
+</head><body>
 <div class="scroll"><div class="stage">
 <img class="bg" src="axm-dashboard.png" alt="AXM Group Service dashboard">
-<button class="hot" id="home" aria-label="Ana səhifə"></button>
-<button class="hot" id="newjob" aria-label="Yeni iş qəbulu"></button>
-<button class="hot" id="newjob2" aria-label="Yeni iş qəbulu"></button>
-<button class="hot" id="cars" aria-label="Avtomobillər"></button>
-<button class="hot" id="customers" aria-label="Müştərilər"></button>
-<button class="hot" id="orders" aria-label="İş sifarişləri"></button>
-<button class="hot" id="parts" aria-label="Ehtiyat hissələri"></button>
-<button class="hot" id="warehouse" aria-label="Anbar"></button>
-<button class="hot" id="finance" aria-label="Maliyyə"></button>
-<button class="hot" id="masters" aria-label="Ustalar"></button>
-<button class="hot" id="warranty" aria-label="Zəmanət"></button>
-<button class="hot" id="reports" aria-label="Hesabatlar"></button>
-<button class="hot" id="calendar" aria-label="Təqvim"></button>
-<button class="hot" id="messages" aria-label="Mesajlar"></button>
-<button class="hot" id="settings" aria-label="Tənzimləmələr"></button>
+<button class="hot" id="home"></button><button class="hot" id="newjob"></button><button class="hot" id="newjob2"></button><button class="hot" id="cars"></button><button class="hot" id="customers"></button>
+<button class="hot" id="orders"></button><button class="hot" id="parts"></button><button class="hot" id="warehouse"></button><button class="hot" id="finance"></button><button class="hot" id="masters"></button>
+<button class="hot" id="warranty"></button><button class="hot" id="reports"></button><button class="hot" id="calendar"></button><button class="hot" id="messages"></button><button class="hot" id="settings"></button>
 </div></div>
 
-<!-- Yeni iş -->
-<div id="jobModal" class="overlay"><div class="panel small">
- <div class="head"><h2>Yeni İş Qəbulu</h2><button class="x" data-close="jobModal">×</button></div>
- <form id="jobForm" class="form">
-  <input id="jName" placeholder="Müştərinin adı *" required>
-  <input id="jPhone" placeholder="Telefon">
-  <input id="jCar" placeholder="Avtomobil (marka/model) *" required>
-  <input id="jPlate" placeholder="Dövlət nömrəsi *" required>
-  <input id="jVin" placeholder="VIN">
-  <input id="jKm" type="number" min="0" placeholder="Yürüş / km">
-  <textarea id="jWork" placeholder="Şikayət / görüləcək iş"></textarea>
-  <input id="jPrice" type="number" min="0" step="0.01" placeholder="Məbləğ AZN">
-  <select id="jStatus"><option>Təmirdə</option><option>Diaqnostika</option><option>Hazır</option><option>Təhvil verildi</option></select>
-  <button class="primary full" type="submit">Yadda saxla</button>
- </form>
-</div></div>
+<div id="jobModal" class="overlay"><div class="panel small"><div class="head"><h2>Yeni İş Qəbulu</h2><button class="x" data-close="jobModal">×</button></div><form id="jobForm" class="form">
+<input id="jName" placeholder="Müştərinin adı *" required><input id="jPhone" placeholder="Telefon"><input id="jCar" placeholder="Avtomobil (marka/model) *" required><input id="jPlate" placeholder="Dövlət nömrəsi *" required>
+<input id="jVin" placeholder="VIN"><input id="jKm" type="number" min="0" placeholder="Yürüş / km"><textarea id="jWork" placeholder="Şikayət / görüləcək iş"></textarea><input id="jPrice" type="number" min="0" step=".01" placeholder="Məbləğ AZN">
+<select id="jStatus"><option>Qəbul edildi</option><option>Diaqnostika</option><option>Təmirdə</option><option>Hazır</option><option>Təhvil verildi</option></select><select id="jMaster"><option value="">Usta seçilməyib</option></select>
+<button class="primary full" type="submit">Yadda saxla</button></form></div></div>
 
-<!-- Avtomobillər -->
-<div id="carsModal" class="overlay"><div class="panel">
- <div class="head"><div><h2>Avtomobillər</h2><div class="muted">Servisdə qeydiyyatda olan avtomobillər və servis tarixçəsi</div></div><button class="x" data-close="carsModal">×</button></div>
- <div class="cardgrid">
-  <div class="stat">Ümumi avtomobil<b id="carCount">0</b></div>
-  <div class="stat">Təmirdə<b id="repairCount">0</b></div>
-  <div class="stat">Hazır<b id="readyCount">0</b></div>
-  <div class="stat">Təhvil verilib<b id="deliveredCount">0</b></div>
- </div>
- <div class="toolbar">
-  <input id="carSearch" class="search" placeholder="Nömrə, VIN, avtomobil və ya müştəri üzrə axtar...">
-  <button id="addCarBtn" class="primary">+ Avtomobil əlavə et</button>
- </div>
- <div class="tablewrap">
-  <table>
-   <thead><tr><th>Dövlət №</th><th>Avtomobil</th><th>VIN</th><th>Yürüş</th><th>Müştəri</th><th>Telefon</th><th>Status</th><th>Son servis</th><th>Əməliyyat</th></tr></thead>
-   <tbody id="carsBody"></tbody>
-  </table>
-  <div id="carsEmpty" class="empty">Hələ avtomobil əlavə edilməyib.</div>
- </div>
-</div></div>
+<div id="carsModal" class="overlay"><div class="panel"><div class="head"><div><h2>Avtomobillər</h2><div class="muted">Qeydiyyat və servis tarixçəsi</div></div><button class="x" data-close="carsModal">×</button></div>
+<div class="cardgrid"><div class="stat">Ümumi<b id="carCount">0</b></div><div class="stat">Təmirdə<b id="repairCount">0</b></div><div class="stat">Hazır<b id="readyCount">0</b></div><div class="stat">Təhvil verilib<b id="deliveredCount">0</b></div></div>
+<div class="toolbar"><input id="carSearch" class="search" placeholder="Nömrə, VIN, avtomobil və ya müştəri..."><button id="addCarBtn" class="primary">+ Avtomobil əlavə et</button></div>
+<div class="tablewrap"><table><thead><tr><th>Dövlət №</th><th>Avtomobil</th><th>VIN</th><th>Yürüş</th><th>Müştəri</th><th>Telefon</th><th>Status</th><th>Son servis</th><th>Əməliyyat</th></tr></thead><tbody id="carsBody"></tbody></table><div id="carsEmpty" class="empty"></div></div></div></div>
 
-<!-- Avtomobil əlavə/redaktə -->
-<div id="carEditModal" class="overlay"><div class="panel small">
- <div class="head"><h2 id="carEditTitle">Avtomobil əlavə et</h2><button class="x" data-close="carEditModal">×</button></div>
- <form id="carForm" class="form">
-  <input type="hidden" id="cId">
-  <input id="cPlate" placeholder="Dövlət nömrəsi *" required>
-  <input id="cCar" placeholder="Marka / model *" required>
-  <input id="cVin" placeholder="VIN">
-  <input id="cKm" type="number" min="0" placeholder="Yürüş / km">
-  <input id="cOwner" placeholder="Müştəri">
-  <input id="cPhone" placeholder="Telefon">
-  <select id="cStatus"><option>Təmirdə</option><option>Diaqnostika</option><option>Hazır</option><option>Təhvil verildi</option></select>
-  <input id="cDate" type="date">
-  <button class="primary full" type="submit">Yadda saxla</button>
- </form>
-</div></div>
+<div id="carEditModal" class="overlay"><div class="panel small"><div class="head"><h2 id="carEditTitle">Avtomobil əlavə et</h2><button class="x" data-close="carEditModal">×</button></div><form id="carForm" class="form">
+<input type="hidden" id="cId"><input id="cPlate" placeholder="Dövlət nömrəsi *" required><input id="cCar" placeholder="Marka / model *" required><input id="cVin" placeholder="VIN"><input id="cKm" type="number" min="0" placeholder="Yürüş / km">
+<input id="cOwner" placeholder="Müştəri"><input id="cPhone" placeholder="Telefon"><select id="cStatus"><option>Qəbul edildi</option><option>Diaqnostika</option><option>Təmirdə</option><option>Hazır</option><option>Təhvil verildi</option></select><input id="cDate" type="date">
+<button class="primary full" type="submit">Yadda saxla</button></form></div></div>
 
-<!-- Tarixçə -->
-<div id="historyModal" class="overlay"><div class="panel">
- <div class="head"><div><h2 id="historyTitle">Servis tarixçəsi</h2><div id="historySub" class="muted"></div></div><button class="x" data-close="historyModal">×</button></div>
- <div class="tablewrap">
-  <table><thead><tr><th>Tarix</th><th>Görülən iş</th><th>Status</th><th>Məbləğ</th><th>Yürüş</th></tr></thead><tbody id="historyBody"></tbody></table>
-  <div id="historyEmpty" class="empty">Bu avtomobil üçün servis tarixçəsi yoxdur.</div>
- </div>
-</div></div>
+<div id="customersModal" class="overlay"><div class="panel"><div class="head"><div><h2>Müştərilər</h2><div class="muted">Müştəri bazası və servis tarixçəsi</div></div><button class="x" data-close="customersModal">×</button></div>
+<div class="cardgrid"><div class="stat">Ümumi müştəri<b id="customerCount">0</b></div><div class="stat">Avtomobillər<b id="customerCarCount">0</b></div><div class="stat">Ümumi borc<b id="customerDebtTotal">0 AZN</b></div><div class="stat">Sifarişlər<b id="customerJobCount">0</b></div></div>
+<div class="toolbar"><input id="customerSearch" class="search" placeholder="Ad, telefon, nömrə..."><button id="addCustomerBtn" class="primary">+ Yeni müştəri</button></div>
+<div class="tablewrap"><table><thead><tr><th>Müştəri</th><th>Telefon</th><th>Avtomobil</th><th>Borc</th><th>Son servis</th><th>Əməliyyat</th></tr></thead><tbody id="customersBody"></tbody></table><div id="customersEmpty" class="empty"></div></div></div></div>
 
+<div id="customerEditModal" class="overlay"><div class="panel small"><div class="head"><h2 id="customerEditTitle">Yeni müştəri</h2><button class="x" data-close="customerEditModal">×</button></div><form id="customerForm" class="form">
+<input type="hidden" id="uId"><input id="uName" placeholder="Ad və soyad *" required><input id="uPhone" placeholder="Telefon *" required><input id="uEmail" type="email" placeholder="E-poçt"><input id="uDebt" type="number" step=".01" placeholder="Borc AZN"><textarea id="uNote" placeholder="Qeyd"></textarea><button class="primary full">Yadda saxla</button></form></div></div>
 
-<!-- Müştərilər -->
-<div id="customersModal" class="overlay"><div class="panel">
- <div class="head"><div><h2>Müştərilər</h2><div class="muted">Müştəri bazası, avtomobillər, balans və servis tarixçəsi</div></div><button class="x" data-close="customersModal">×</button></div>
- <div class="cardgrid">
-  <div class="stat">Ümumi müştəri<b id="customerCount">0</b></div>
-  <div class="stat">Avtomobillər<b id="customerCarCount">0</b></div>
-  <div class="stat">Ümumi borc<b id="customerDebtTotal">0 AZN</b></div>
-  <div class="stat">Servis sifarişləri<b id="customerJobCount">0</b></div>
- </div>
- <div class="toolbar">
-  <input id="customerSearch" class="search" placeholder="Ad, telefon və ya avtomobil nömrəsi üzrə axtar...">
-  <button id="addCustomerBtn" class="primary">+ Yeni müştəri</button>
- </div>
- <div class="tablewrap">
-  <table>
-   <thead><tr><th>Müştəri</th><th>Telefon</th><th>Avtomobil sayı</th><th>Borc / balans</th><th>Son servis</th><th>Əməliyyat</th></tr></thead>
-   <tbody id="customersBody"></tbody>
-  </table>
-  <div id="customersEmpty" class="empty">Hələ müştəri əlavə edilməyib.</div>
- </div>
-</div></div>
+<div id="ordersModal" class="overlay"><div class="panel"><div class="head"><div><h2>İş Sifarişləri</h2><div class="muted">Qəbul edildi → Diaqnostika → Təmirdə → Hazır → Təhvil verildi</div></div><button class="x" data-close="ordersModal">×</button></div>
+<div class="toolbar"><input id="orderSearch" class="search" placeholder="Müştəri, nömrə, VIN, iş..."><button class="primary" onclick="openM('jobModal')">+ Yeni iş</button></div>
+<div class="tablewrap"><table><thead><tr><th>Tarix</th><th>Müştəri</th><th>Avtomobil</th><th>İş</th><th>Usta</th><th>Məbləğ</th><th>Status</th><th>Əməliyyat</th></tr></thead><tbody id="ordersBody"></tbody></table><div id="ordersEmpty" class="empty"></div></div></div></div>
 
-<!-- Müştəri əlavə/redaktə -->
-<div id="customerEditModal" class="overlay"><div class="panel small">
- <div class="head"><h2 id="customerEditTitle">Yeni müştəri</h2><button class="x" data-close="customerEditModal">×</button></div>
- <form id="customerForm" class="form">
-  <input type="hidden" id="uId">
-  <input id="uName" placeholder="Ad və soyad *" required>
-  <input id="uPhone" placeholder="Telefon *" required>
-  <input id="uEmail" type="email" placeholder="E-poçt">
-  <input id="uDebt" type="number" step="0.01" placeholder="Borc / balans AZN">
-  <textarea id="uNote" placeholder="Qeyd"></textarea>
-  <button class="primary full" type="submit">Yadda saxla</button>
- </form>
-</div></div>
+<div id="partsModal" class="overlay"><div class="panel"><div class="head"><h2>Ehtiyat Hissələri</h2><button class="x" data-close="partsModal">×</button></div>
+<div class="toolbar"><input id="partSearch" class="search" placeholder="Hissə adı və ya kod..."><button id="addPartBtn" class="primary">+ Hissə əlavə et</button></div>
+<div class="tablewrap"><table><thead><tr><th>Kod</th><th>Hissə</th><th>Alış</th><th>Satış</th><th>Stok</th><th>Min.</th><th>Əməliyyat</th></tr></thead><tbody id="partsBody"></tbody></table><div id="partsEmpty" class="empty"></div></div></div></div>
 
-<!-- Müştəri məlumatları -->
-<div id="customerDetailModal" class="overlay"><div class="panel">
- <div class="head"><div><h2 id="customerDetailTitle">Müştəri</h2><div id="customerDetailSub" class="muted"></div></div><button class="x" data-close="customerDetailModal">×</button></div>
- <div class="customer-detail">
-  <div class="stat">Avtomobil sayı<b id="detailCarCount">0</b></div>
-  <div class="stat">Servis sifarişləri<b id="detailJobCount">0</b></div>
-  <div class="stat">Borc / balans<b id="detailDebt">0 AZN</b></div>
- </div>
- <h3>Avtomobillər</h3>
- <div class="tablewrap">
-  <table><thead><tr><th>Dövlət №</th><th>Avtomobil</th><th>VIN</th><th>Status</th><th>Son servis</th></tr></thead><tbody id="customerCarsBody"></tbody></table>
-  <div id="customerCarsEmpty" class="empty">Bu müştərinin avtomobili yoxdur.</div>
- </div>
- <h3 style="margin-top:18px">Servis tarixçəsi</h3>
- <div class="tablewrap">
-  <table><thead><tr><th>Tarix</th><th>Avtomobil</th><th>Dövlət №</th><th>Görülən iş</th><th>Status</th><th>Məbləğ</th></tr></thead><tbody id="customerJobsBody"></tbody></table>
-  <div id="customerJobsEmpty" class="empty">Bu müştəri üçün servis tarixçəsi yoxdur.</div>
- </div>
-</div></div>
+<div id="partEditModal" class="overlay"><div class="panel small"><div class="head"><h2 id="partEditTitle">Ehtiyat hissəsi</h2><button class="x" data-close="partEditModal">×</button></div><form id="partForm" class="form">
+<input type="hidden" id="pId"><input id="pCode" placeholder="Hissə kodu"><input id="pName" placeholder="Hissənin adı *" required><input id="pBuy" type="number" min="0" step=".01" placeholder="Alış qiyməti"><input id="pSell" type="number" min="0" step=".01" placeholder="Satış qiyməti"><input id="pStock" type="number" min="0" placeholder="Stok"><input id="pMin" type="number" min="0" placeholder="Minimum stok"><button class="primary full">Yadda saxla</button></form></div></div>
+
+<div id="warehouseModal" class="overlay"><div class="panel"><div class="head"><h2>Anbar</h2><button class="x" data-close="warehouseModal">×</button></div>
+<div class="cardgrid"><div class="stat">Hissə növü<b id="whTypes">0</b></div><div class="stat">Ümumi stok<b id="whStock">0</b></div><div class="stat">Stok dəyəri<b id="whValue">0 AZN</b></div><div class="stat">Az qalan<b id="whLow">0</b></div></div>
+<div class="toolbar"><button class="primary" id="stockMoveBtn">+ Anbar hərəkəti</button></div><div class="tablewrap"><table><thead><tr><th>Tarix</th><th>Hissə</th><th>Növ</th><th>Miqdar</th><th>Qeyd</th></tr></thead><tbody id="movesBody"></tbody></table><div id="movesEmpty" class="empty"></div></div></div></div>
+
+<div id="stockMoveModal" class="overlay"><div class="panel small"><div class="head"><h2>Anbar hərəkəti</h2><button class="x" data-close="stockMoveModal">×</button></div><form id="moveForm" class="form">
+<select id="mPart" required></select><select id="mType"><option value="in">Giriş</option><option value="out">Çıxış</option></select><input id="mQty" type="number" min="1" required placeholder="Miqdar"><input id="mNote" placeholder="Qeyd"><button class="primary full">Yadda saxla</button></form></div></div>
+
+<div id="financeModal" class="overlay"><div class="panel"><div class="head"><h2>Maliyyə</h2><button class="x" data-close="financeModal">×</button></div>
+<div class="cardgrid"><div class="stat">Servis gəliri<b id="finService">0 AZN</b></div><div class="stat">Əlavə gəlir<b id="finExtra">0 AZN</b></div><div class="stat">Xərc<b id="finExpense">0 AZN</b></div><div class="stat">Balans<b id="finBalance">0 AZN</b></div></div>
+<div class="toolbar"><button id="addFinanceBtn" class="primary">+ Gəlir / xərc</button></div><div class="tablewrap"><table><thead><tr><th>Tarix</th><th>Növ</th><th>Kateqoriya</th><th>Məbləğ</th><th>Qeyd</th><th></th></tr></thead><tbody id="financeBody"></tbody></table><div id="financeEmpty" class="empty"></div></div></div></div>
+
+<div id="financeEditModal" class="overlay"><div class="panel small"><div class="head"><h2>Maliyyə əməliyyatı</h2><button class="x" data-close="financeEditModal">×</button></div><form id="financeForm" class="form">
+<select id="fType"><option value="income">Gəlir</option><option value="expense">Xərc</option></select><input id="fCategory" placeholder="Kateqoriya *" required><input id="fAmount" type="number" min="0" step=".01" placeholder="Məbləğ *" required><input id="fDate" type="date" required><textarea id="fNote" placeholder="Qeyd"></textarea><button class="primary full">Yadda saxla</button></form></div></div>
+
+<div id="mastersModal" class="overlay"><div class="panel"><div class="head"><h2>Ustalar</h2><button class="x" data-close="mastersModal">×</button></div><div class="toolbar"><button id="addMasterBtn" class="primary">+ Usta əlavə et</button></div>
+<div class="tablewrap"><table><thead><tr><th>Usta</th><th>Telefon</th><th>İxtisas</th><th>İş sayı</th><th>İş məbləği</th><th>Əməliyyat</th></tr></thead><tbody id="mastersBody"></tbody></table><div id="mastersEmpty" class="empty"></div></div></div></div>
+
+<div id="masterEditModal" class="overlay"><div class="panel small"><div class="head"><h2>Usta</h2><button class="x" data-close="masterEditModal">×</button></div><form id="masterForm" class="form">
+<input type="hidden" id="msId"><input id="msName" placeholder="Ad və soyad *" required><input id="msPhone" placeholder="Telefon"><input id="msSkill" placeholder="İxtisas"><button class="primary full">Yadda saxla</button></form></div></div>
+
+<div id="warrantyModal" class="overlay"><div class="panel"><div class="head"><h2>Zəmanət</h2><button class="x" data-close="warrantyModal">×</button></div><div class="toolbar"><button id="addWarrantyBtn" class="primary">+ Zəmanət əlavə et</button></div>
+<div class="tablewrap"><table><thead><tr><th>Avtomobil</th><th>Nömrə</th><th>İş / hissə</th><th>Başlanğıc</th><th>Bitmə</th><th>KM limiti</th><th>Status</th><th></th></tr></thead><tbody id="warrantyBody"></tbody></table><div id="warrantyEmpty" class="empty"></div></div></div></div>
+
+<div id="warrantyEditModal" class="overlay"><div class="panel small"><div class="head"><h2>Zəmanət əlavə et</h2><button class="x" data-close="warrantyEditModal">×</button></div><form id="warrantyForm" class="form">
+<input id="wPlate" placeholder="Dövlət nömrəsi *" required><input id="wCar" placeholder="Avtomobil"><input id="wWork" placeholder="İş / hissə *" required><input id="wStart" type="date" required><input id="wEnd" type="date"><input id="wKm" type="number" min="0" placeholder="KM limiti"><button class="primary full">Yadda saxla</button></form></div></div>
+
+<div id="reportsModal" class="overlay"><div class="panel"><div class="head"><h2>Hesabatlar</h2><button class="x" data-close="reportsModal">×</button></div><div id="reportGrid" class="reportgrid"></div><div class="note" id="reportNote"></div></div></div>
+
+<div id="calendarModal" class="overlay"><div class="panel"><div class="head"><h2>Təqvim</h2><button class="x" data-close="calendarModal">×</button></div><div class="note">Servis tarixləri və zəmanət bitmə tarixləri sistemdə saxlanılır. Zəmanət bölməsindən tarixləri izləyə bilərsiniz.</div></div></div>
+
+<div id="messagesModal" class="overlay"><div class="panel"><div class="head"><h2>Mesajlar</h2><button class="x" data-close="messagesModal">×</button></div>
+<div class="toolbar"><input id="msgSearch" class="search" placeholder="Müştəri və ya telefon..."></div><div class="tablewrap"><table><thead><tr><th>Müştəri</th><th>Telefon</th><th>Avtomobil</th><th>Son status</th><th>Əlaqə</th></tr></thead><tbody id="messagesBody"></tbody></table><div id="messagesEmpty" class="empty"></div></div></div></div>
+
+<div id="settingsModal" class="overlay"><div class="panel small"><div class="head"><h2>Tənzimləmələr</h2><button class="x" data-close="settingsModal">×</button></div><form id="settingsForm" class="form">
+<input id="sService" placeholder="Servis adı"><input id="sPhone" placeholder="Servis telefonu"><input id="sManager" placeholder="Rəhbər / istifadəçi"><input id="sCurrency" placeholder="Valyuta" value="AZN"><textarea id="sAddress" placeholder="Ünvan / qeyd"></textarea><button class="primary full">Yadda saxla</button>
+</form><div class="note">AXM V4 məlumatları bu brauzerdə saxlayır. Mövcud V3 avtomobil, müştəri və iş məlumatları qorunur.</div></div></div>
 
 <div id="toast" class="toast"></div>
-
 <script>
 const $=id=>document.getElementById(id);
-const KEYS={jobs:'axm_jobs_v2',cars:'axm_cars_v2',customers:'axm_customers_v2'};
-const read=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
-const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const K={jobs:'axm_jobs_v2',cars:'axm_cars_v2',customers:'axm_customers_v2',parts:'axm_parts_v4',moves:'axm_moves_v4',finance:'axm_finance_v4',masters:'axm_masters_v4',warranty:'axm_warranty_v4',settings:'axm_settings_v4'};
+const read=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}, write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const readObj=k=>{try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return{}}}, writeObj=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
-function openM(id){$(id).classList.add('open')}
-function closeM(id){$(id).classList.remove('open')}
-document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
-document.querySelectorAll('.overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeM(m.id)}));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8), today=()=>new Date().toISOString().slice(0,10), money=n=>Number(n||0).toFixed(2)+' AZN';
+function openM(id){$(id)?.classList.add('open')} function closeM(id){$(id)?.classList.remove('open')}
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));document.querySelectorAll('.overlay').forEach(m=>m.onclick=e=>{if(e.target===m)closeM(m.id)});
 function note(t){const x=$('toast');x.textContent=t;x.style.display='block';clearTimeout(window._tt);window._tt=setTimeout(()=>x.style.display='none',1800)}
+function norm(v){return String(v||'').replace(/\s+/g,'').trim()} function sameCustomer(c,n,p){return (p&&norm(c.phone)===norm(p))||(!p&&n&&String(c.name).toLowerCase()===String(n).toLowerCase())}
+function syncCustomers(){const cs=read(K.customers);[...read(K.cars).map(c=>({name:c.owner,phone:c.phone})),...read(K.jobs).map(j=>({name:j.name,phone:j.phone}))].forEach(x=>{if((x.name||x.phone)&&!cs.find(c=>sameCustomer(c,x.name,x.phone)))cs.push({id:uid(),name:x.name||'Adsız müştəri',phone:x.phone||'',email:'',debt:0,note:''})});write(K.customers,cs)}
+function customerCars(c){return read(K.cars).filter(x=>sameCustomer(c,x.owner,x.phone))} function customerJobs(c){return read(K.jobs).filter(x=>sameCustomer(c,x.name,x.phone))}
+function fillMasters(){const ms=read(K.masters);$('jMaster').innerHTML='<option value="">Usta seçilməyib</option>'+ms.map(x=>`<option>${esc(x.name)}</option>`).join('')}
+$('home').onclick=()=>note('Ana səhifə');$('newjob').onclick=$('newjob2').onclick=()=>{fillMasters();openM('jobModal')};
+$('cars').onclick=()=>{renderCars();openM('carsModal')};$('customers').onclick=()=>{renderCustomers();openM('customersModal')};$('orders').onclick=()=>{renderOrders();openM('ordersModal')};
+$('parts').onclick=()=>{renderParts();openM('partsModal')};$('warehouse').onclick=()=>{renderWarehouse();openM('warehouseModal')};$('finance').onclick=()=>{renderFinance();openM('financeModal')};
+$('masters').onclick=()=>{renderMasters();openM('mastersModal')};$('warranty').onclick=()=>{renderWarranty();openM('warrantyModal')};$('reports').onclick=()=>{renderReports();openM('reportsModal')};
+$('calendar').onclick=()=>openM('calendarModal');$('messages').onclick=()=>{renderMessages();openM('messagesModal')};$('settings').onclick=()=>{loadSettings();openM('settingsModal')};
 
-$('newjob').onclick=$('newjob2').onclick=()=>openM('jobModal');
-$('cars').onclick=()=>{renderCars();openM('carsModal')};
-$('customers').onclick=()=>{syncCustomers();renderCustomers();openM('customersModal')};
-$('home').onclick=()=>note('Ana səhifə');
-const pending={orders:'İş Sifarişləri',parts:'Ehtiyat Hissələri',warehouse:'Anbar',finance:'Maliyyə',masters:'Ustalar',warranty:'Zəmanət',reports:'Hesabatlar',calendar:'Təqvim',messages:'Mesajlar',settings:'Tənzimləmələr'};
-Object.entries(pending).forEach(([id,label])=>$(id).onclick=()=>note(label+' bölməsi növbəti mərhələdə aktiv ediləcək'));
+$('jobForm').onsubmit=e=>{e.preventDefault();const j={id:uid(),name:$('jName').value.trim(),phone:$('jPhone').value.trim(),car:$('jCar').value.trim(),plate:$('jPlate').value.trim().toUpperCase(),vin:$('jVin').value.trim().toUpperCase(),km:$('jKm').value,work:$('jWork').value.trim(),price:Number($('jPrice').value||0),status:$('jStatus').value,master:$('jMaster').value,date:today()};
+if(!j.name||!j.car||!j.plate)return;const jobs=read(K.jobs);jobs.unshift(j);write(K.jobs,jobs);const cars=read(K.cars);let c=cars.find(x=>x.plate===j.plate||(j.vin&&x.vin===j.vin));if(c)Object.assign(c,{car:j.car,vin:j.vin||c.vin,km:j.km||c.km,owner:j.name,phone:j.phone,status:j.status,lastService:j.date});else cars.unshift({id:uid(),plate:j.plate,car:j.car,vin:j.vin,km:j.km,owner:j.name,phone:j.phone,status:j.status,lastService:j.date});write(K.cars,cars);syncCustomers();e.target.reset();closeM('jobModal');note('Yeni iş yadda saxlanıldı')};
 
-$('jobForm').addEventListener('submit',e=>{
- e.preventDefault();
- const job={
-  id:uid(),name:$('jName').value.trim(),phone:$('jPhone').value.trim(),car:$('jCar').value.trim(),
-  plate:$('jPlate').value.trim().toUpperCase(),vin:$('jVin').value.trim().toUpperCase(),km:$('jKm').value,
-  work:$('jWork').value.trim(),price:$('jPrice').value,status:$('jStatus').value,
-  date:new Date().toISOString().slice(0,10)
- };
- if(!job.name||!job.car||!job.plate)return;
- const jobs=read(KEYS.jobs);jobs.unshift(job);write(KEYS.jobs,jobs);
- const cars=read(KEYS.cars);
- let car=cars.find(c=>c.plate===job.plate || (job.vin && c.vin===job.vin));
- if(car){
-  Object.assign(car,{car:job.car,vin:job.vin||car.vin,km:job.km||car.km,owner:job.name,phone:job.phone,status:job.status,lastService:job.date});
- }else{
-  cars.unshift({id:uid(),plate:job.plate,car:job.car,vin:job.vin,km:job.km,owner:job.name,phone:job.phone,status:job.status,lastService:job.date});
- }
- write(KEYS.cars,cars);
- syncCustomers();
- e.target.reset();closeM('jobModal');note('Yeni iş, avtomobil və müştəri yadda saxlanıldı');
-});
+$('addCarBtn').onclick=()=>{$('carForm').reset();$('cId').value='';$('cDate').value=today();openM('carEditModal')};
+$('carForm').onsubmit=e=>{e.preventDefault();const a=read(K.cars),id=$('cId').value,d={id:id||uid(),plate:$('cPlate').value.trim().toUpperCase(),car:$('cCar').value.trim(),vin:$('cVin').value.trim().toUpperCase(),km:$('cKm').value,owner:$('cOwner').value.trim(),phone:$('cPhone').value.trim(),status:$('cStatus').value,lastService:$('cDate').value};if(a.some(x=>x.plate===d.plate&&x.id!==d.id))return alert('Bu dövlət nömrəsi artıq mövcuddur.');if(id){let i=a.findIndex(x=>x.id===id);a[i]=d}else a.unshift(d);write(K.cars,a);syncCustomers();closeM('carEditModal');renderCars();note('Avtomobil yadda saxlanıldı')};
+$('carSearch').oninput=renderCars;
+function renderCars(){let a=read(K.cars),q=$('carSearch').value.toLowerCase();let f=a.filter(c=>[c.plate,c.car,c.vin,c.owner,c.phone].join(' ').toLowerCase().includes(q));$('carCount').textContent=a.length;$('repairCount').textContent=a.filter(c=>['Təmirdə','Diaqnostika','Qəbul edildi'].includes(c.status)).length;$('readyCount').textContent=a.filter(c=>c.status==='Hazır').length;$('deliveredCount').textContent=a.filter(c=>c.status==='Təhvil verildi').length;$('carsEmpty').textContent=f.length?'':'Hələ avtomobil yoxdur.';$('carsBody').innerHTML=f.map(c=>`<tr><td><b>${esc(c.plate)}</b></td><td>${esc(c.car)}</td><td>${esc(c.vin||'-')}</td><td>${esc(c.km||'-')}</td><td>${esc(c.owner||'-')}</td><td>${esc(c.phone||'-')}</td><td><span class="badge">${esc(c.status||'-')}</span></td><td>${esc(c.lastService||'-')}</td><td><div class="actions"><button onclick="editCar('${c.id}')">Redaktə</button><button onclick="deleteCar('${c.id}')">Sil</button></div></td></tr>`).join('')}
+window.editCar=id=>{let c=read(K.cars).find(x=>x.id===id);if(!c)return;$('cId').value=c.id;$('cPlate').value=c.plate;$('cCar').value=c.car;$('cVin').value=c.vin||'';$('cKm').value=c.km||'';$('cOwner').value=c.owner||'';$('cPhone').value=c.phone||'';$('cStatus').value=c.status||'Təmirdə';$('cDate').value=c.lastService||'';openM('carEditModal')};
+window.deleteCar=id=>{if(confirm('Avtomobil silinsin?')){write(K.cars,read(K.cars).filter(x=>x.id!==id));renderCars()}};
 
-$('addCarBtn').onclick=()=>{
- $('carForm').reset();$('cId').value='';$('carEditTitle').textContent='Avtomobil əlavə et';$('cDate').value=new Date().toISOString().slice(0,10);openM('carEditModal')
-};
-$('carForm').addEventListener('submit',e=>{
- e.preventDefault();
- const cars=read(KEYS.cars), id=$('cId').value;
- const data={id:id||uid(),plate:$('cPlate').value.trim().toUpperCase(),car:$('cCar').value.trim(),vin:$('cVin').value.trim().toUpperCase(),km:$('cKm').value,owner:$('cOwner').value.trim(),phone:$('cPhone').value.trim(),status:$('cStatus').value,lastService:$('cDate').value};
- const duplicate=cars.find(c=>c.plate===data.plate && c.id!==data.id);
- if(duplicate){alert('Bu dövlət nömrəsi artıq qeydiyyatdadır.');return}
- if(id){const i=cars.findIndex(c=>c.id===id);if(i>=0)cars[i]=data}else cars.unshift(data);
- write(KEYS.cars,cars);syncCustomers();closeM('carEditModal');renderCars();note('Avtomobil yadda saxlanıldı');
-});
-$('carSearch').addEventListener('input',renderCars);
+$('addCustomerBtn').onclick=()=>{$('customerForm').reset();$('uId').value='';openM('customerEditModal')};$('customerSearch').oninput=renderCustomers;
+$('customerForm').onsubmit=e=>{e.preventDefault();let a=read(K.customers),id=$('uId').value,d={id:id||uid(),name:$('uName').value.trim(),phone:$('uPhone').value.trim(),email:$('uEmail').value.trim(),debt:Number($('uDebt').value||0),note:$('uNote').value.trim()};if(a.some(x=>norm(x.phone)===norm(d.phone)&&x.id!==d.id))return alert('Bu telefon artıq mövcuddur.');if(id){let i=a.findIndex(x=>x.id===id);a[i]=d}else a.unshift(d);write(K.customers,a);closeM('customerEditModal');renderCustomers();note('Müştəri yadda saxlanıldı')};
+function renderCustomers(){syncCustomers();let a=read(K.customers),q=$('customerSearch').value.toLowerCase();let f=a.filter(c=>[c.name,c.phone,c.email,...customerCars(c).map(x=>x.plate)].join(' ').toLowerCase().includes(q));$('customerCount').textContent=a.length;$('customerCarCount').textContent=read(K.cars).length;$('customerDebtTotal').textContent=money(a.reduce((s,c)=>s+Number(c.debt||0),0));$('customerJobCount').textContent=read(K.jobs).length;$('customersEmpty').textContent=f.length?'':'Hələ müştəri yoxdur.';$('customersBody').innerHTML=f.map(c=>{let js=customerJobs(c),last=[...js].sort((x,y)=>String(y.date).localeCompare(String(x.date)))[0];return `<tr><td><b>${esc(c.name)}</b><div class="muted">${esc(c.email||'')}</div></td><td>${esc(c.phone)}</td><td>${customerCars(c).length}</td><td>${money(c.debt)}</td><td>${esc(last?.date||'-')}</td><td><div class="actions"><button onclick="editCustomer('${c.id}')">Redaktə</button><button onclick="deleteCustomer('${c.id}')">Sil</button></div></td></tr>`}).join('')}
+window.editCustomer=id=>{let c=read(K.customers).find(x=>x.id===id);if(!c)return;$('uId').value=c.id;$('uName').value=c.name;$('uPhone').value=c.phone;$('uEmail').value=c.email||'';$('uDebt').value=c.debt||0;$('uNote').value=c.note||'';openM('customerEditModal')};window.deleteCustomer=id=>{if(confirm('Müştəri silinsin?')){write(K.customers,read(K.customers).filter(x=>x.id!==id));renderCustomers()}};
 
-function renderCars(){
- const q=$('carSearch').value.trim().toLowerCase(), cars=read(KEYS.cars);
- const filtered=cars.filter(c=>[c.plate,c.car,c.vin,c.owner,c.phone].join(' ').toLowerCase().includes(q));
- $('carCount').textContent=cars.length;
- $('repairCount').textContent=cars.filter(c=>c.status==='Təmirdə'||c.status==='Diaqnostika').length;
- $('readyCount').textContent=cars.filter(c=>c.status==='Hazır').length;
- $('deliveredCount').textContent=cars.filter(c=>c.status==='Təhvil verildi').length;
- $('carsEmpty').style.display=filtered.length?'none':'block';
- $('carsBody').innerHTML=filtered.map(c=>`<tr>
-  <td><b>${esc(c.plate)}</b></td><td>${esc(c.car)}</td><td>${esc(c.vin||'-')}</td><td>${esc(c.km||'-')}</td>
-  <td>${esc(c.owner||'-')}</td><td>${esc(c.phone||'-')}</td><td><span class="badge">${esc(c.status||'-')}</span></td>
-  <td>${esc(c.lastService||'-')}</td>
-  <td><div class="actions"><button onclick="historyCar('${c.id}')">Tarixçə</button><button onclick="editCar('${c.id}')">Redaktə</button><button onclick="deleteCar('${c.id}')">Sil</button></div></td>
- </tr>`).join('');
-}
-window.editCar=id=>{
- const c=read(KEYS.cars).find(x=>x.id===id);if(!c)return;
- $('cId').value=c.id;$('cPlate').value=c.plate;$('cCar').value=c.car;$('cVin').value=c.vin||'';$('cKm').value=c.km||'';$('cOwner').value=c.owner||'';$('cPhone').value=c.phone||'';$('cStatus').value=c.status||'Təmirdə';$('cDate').value=c.lastService||'';$('carEditTitle').textContent='Avtomobili redaktə et';openM('carEditModal')
-};
-window.deleteCar=id=>{
- if(!confirm('Bu avtomobili silmək istəyirsiniz?'))return;
- write(KEYS.cars,read(KEYS.cars).filter(c=>c.id!==id));renderCars();note('Avtomobil silindi')
-};
-window.historyCar=id=>{
- const c=read(KEYS.cars).find(x=>x.id===id);if(!c)return;
- $('historyTitle').textContent='Servis tarixçəsi — '+c.plate;$('historySub').textContent=[c.car,c.owner,c.vin].filter(Boolean).join(' • ');
- const jobs=read(KEYS.jobs).filter(j=>j.plate===c.plate || (c.vin&&j.vin===c.vin));
- $('historyEmpty').style.display=jobs.length?'none':'block';
- $('historyBody').innerHTML=jobs.map(j=>`<tr><td>${esc(j.date)}</td><td>${esc(j.work||'-')}</td><td><span class="badge">${esc(j.status)}</span></td><td>${esc(j.price||0)} AZN</td><td>${esc(j.km||'-')}</td></tr>`).join('');
- openM('historyModal')
-};
+$('orderSearch').oninput=renderOrders;
+function renderOrders(){let a=read(K.jobs),q=$('orderSearch').value.toLowerCase();let f=a.filter(j=>Object.values(j).join(' ').toLowerCase().includes(q));$('ordersEmpty').textContent=f.length?'':'Hələ iş sifarişi yoxdur.';$('ordersBody').innerHTML=f.map(j=>`<tr><td>${esc(j.date||'-')}</td><td>${esc(j.name)}</td><td>${esc(j.car)}<div class="muted">${esc(j.plate)}</div></td><td>${esc(j.work||'-')}</td><td>${esc(j.master||'-')}</td><td>${money(j.price)}</td><td><select onchange="changeJobStatus('${j.id}',this.value)">${['Qəbul edildi','Diaqnostika','Təmirdə','Hazır','Təhvil verildi'].map(s=>`<option ${s===j.status?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="danger" onclick="deleteJob('${j.id}')">Sil</button></td></tr>`).join('')}
+window.changeJobStatus=(id,s)=>{let a=read(K.jobs),j=a.find(x=>x.id===id);if(j){j.status=s;write(K.jobs,a);let cs=read(K.cars),c=cs.find(x=>x.plate===j.plate);if(c){c.status=s;write(K.cars,cs)}note('Status dəyişdirildi')}};window.deleteJob=id=>{if(confirm('İş sifarişi silinsin?')){write(K.jobs,read(K.jobs).filter(x=>x.id!==id));renderOrders()}};
 
-function normalizePhone(v){return String(v||'').replace(/\s+/g,'').trim()}
-function syncCustomers(){
- const customers=read(KEYS.customers), cars=read(KEYS.cars), jobs=read(KEYS.jobs);
- const findCustomer=(name,phone)=>customers.find(c=>(phone&&normalizePhone(c.phone)===normalizePhone(phone))||(!phone&&name&&c.name.toLowerCase()===name.toLowerCase()));
- [...cars.map(c=>({name:c.owner,phone:c.phone})),...jobs.map(j=>({name:j.name,phone:j.phone}))].forEach(x=>{
-  const name=String(x.name||'').trim(), phone=String(x.phone||'').trim();
-  if(!name&&!phone)return;
-  if(!findCustomer(name,phone))customers.push({id:uid(),name:name||'Adsız müştəri',phone,email:'',debt:0,note:''});
- });
- write(KEYS.customers,customers)
-}
-function customerCars(c){
- return read(KEYS.cars).filter(x=>(c.phone&&normalizePhone(x.phone)===normalizePhone(c.phone))||(!c.phone&&x.owner&&x.owner.toLowerCase()===c.name.toLowerCase()))
-}
-function customerJobs(c){
- return read(KEYS.jobs).filter(x=>(c.phone&&normalizePhone(x.phone)===normalizePhone(c.phone))||(!c.phone&&x.name&&x.name.toLowerCase()===c.name.toLowerCase()))
-}
-$('addCustomerBtn').onclick=()=>{
- $('customerForm').reset();$('uId').value='';$('customerEditTitle').textContent='Yeni müştəri';openM('customerEditModal')
-};
-$('customerSearch').addEventListener('input',renderCustomers);
-$('customerForm').addEventListener('submit',e=>{
- e.preventDefault();
- const customers=read(KEYS.customers),id=$('uId').value;
- const data={id:id||uid(),name:$('uName').value.trim(),phone:$('uPhone').value.trim(),email:$('uEmail').value.trim(),debt:Number($('uDebt').value||0),note:$('uNote').value.trim()};
- if(!data.name||!data.phone)return;
- const dup=customers.find(c=>normalizePhone(c.phone)===normalizePhone(data.phone)&&c.id!==data.id);
- if(dup){alert('Bu telefon nömrəsi ilə müştəri artıq mövcuddur.');return}
- if(id){const i=customers.findIndex(c=>c.id===id);if(i>=0)customers[i]=data}else customers.unshift(data);
- write(KEYS.customers,customers);closeM('customerEditModal');renderCustomers();note('Müştəri yadda saxlanıldı')
-});
-function renderCustomers(){
- syncCustomers();
- const customers=read(KEYS.customers),q=$('customerSearch').value.trim().toLowerCase();
- const cars=read(KEYS.cars),jobs=read(KEYS.jobs);
- const filtered=customers.filter(c=>{
-  const plates=customerCars(c).map(x=>x.plate).join(' ');
-  return [c.name,c.phone,c.email,plates].join(' ').toLowerCase().includes(q)
- });
- $('customerCount').textContent=customers.length;
- $('customerCarCount').textContent=cars.length;
- $('customerDebtTotal').textContent=customers.reduce((s,c)=>s+Number(c.debt||0),0).toFixed(2)+' AZN';
- $('customerJobCount').textContent=jobs.length;
- $('customersEmpty').style.display=filtered.length?'none':'block';
- $('customersBody').innerHTML=filtered.map(c=>{
-  const cc=customerCars(c),cj=customerJobs(c),last=[...cj].sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0];
-  const debt=Number(c.debt||0);
-  return `<tr><td><span class="customer-name">${esc(c.name)}</span>${c.email?`<div class="muted">${esc(c.email)}</div>`:''}</td>
-   <td>${esc(c.phone)}</td><td>${cc.length}</td><td class="money ${debt>0?'minus':'plus'}">${debt.toFixed(2)} AZN</td>
-   <td>${esc(last?.date||'-')}</td><td><div class="actions"><button onclick="viewCustomer('${c.id}')">Bax</button><button onclick="editCustomer('${c.id}')">Redaktə</button><button onclick="deleteCustomer('${c.id}')">Sil</button></div></td></tr>`
- }).join('')
-}
-window.editCustomer=id=>{
- const c=read(KEYS.customers).find(x=>x.id===id);if(!c)return;
- $('uId').value=c.id;$('uName').value=c.name||'';$('uPhone').value=c.phone||'';$('uEmail').value=c.email||'';$('uDebt').value=c.debt||0;$('uNote').value=c.note||'';
- $('customerEditTitle').textContent='Müştərini redaktə et';openM('customerEditModal')
-};
-window.deleteCustomer=id=>{
- const c=read(KEYS.customers).find(x=>x.id===id);if(!c)return;
- if(!confirm(c.name+' adlı müştərini siyahıdan silmək istəyirsiniz? Avtomobil və servis tarixçəsi silinməyəcək.'))return;
- write(KEYS.customers,read(KEYS.customers).filter(x=>x.id!==id));renderCustomers();note('Müştəri silindi')
-};
-window.viewCustomer=id=>{
- const c=read(KEYS.customers).find(x=>x.id===id);if(!c)return;
- const cars=customerCars(c),jobs=customerJobs(c);
- $('customerDetailTitle').textContent=c.name;
- $('customerDetailSub').textContent=[c.phone,c.email,c.note].filter(Boolean).join(' • ');
- $('detailCarCount').textContent=cars.length;$('detailJobCount').textContent=jobs.length;$('detailDebt').textContent=Number(c.debt||0).toFixed(2)+' AZN';
- $('customerCarsEmpty').style.display=cars.length?'none':'block';
- $('customerCarsBody').innerHTML=cars.map(x=>`<tr><td><b>${esc(x.plate)}</b></td><td>${esc(x.car)}</td><td>${esc(x.vin||'-')}</td><td><span class="badge">${esc(x.status||'-')}</span></td><td>${esc(x.lastService||'-')}</td></tr>`).join('');
- const sorted=[...jobs].sort((a,b)=>String(b.date).localeCompare(String(a.date)));
- $('customerJobsEmpty').style.display=sorted.length?'none':'block';
- $('customerJobsBody').innerHTML=sorted.map(j=>`<tr><td>${esc(j.date||'-')}</td><td>${esc(j.car||'-')}</td><td>${esc(j.plate||'-')}</td><td>${esc(j.work||'-')}</td><td><span class="badge">${esc(j.status||'-')}</span></td><td>${esc(j.price||0)} AZN</td></tr>`).join('');
- openM('customerDetailModal')
-};
+$('addPartBtn').onclick=()=>{$('partForm').reset();$('pId').value='';openM('partEditModal')};$('partSearch').oninput=renderParts;
+$('partForm').onsubmit=e=>{e.preventDefault();let a=read(K.parts),id=$('pId').value,d={id:id||uid(),code:$('pCode').value.trim(),name:$('pName').value.trim(),buy:Number($('pBuy').value||0),sell:Number($('pSell').value||0),stock:Number($('pStock').value||0),min:Number($('pMin').value||0)};if(id){let i=a.findIndex(x=>x.id===id);a[i]=d}else a.unshift(d);write(K.parts,a);closeM('partEditModal');renderParts();note('Hissə yadda saxlanıldı')};
+function renderParts(){let a=read(K.parts),q=$('partSearch').value.toLowerCase(),f=a.filter(p=>[p.code,p.name].join(' ').toLowerCase().includes(q));$('partsEmpty').textContent=f.length?'':'Hələ ehtiyat hissəsi yoxdur.';$('partsBody').innerHTML=f.map(p=>`<tr><td>${esc(p.code||'-')}</td><td><b>${esc(p.name)}</b></td><td>${money(p.buy)}</td><td>${money(p.sell)}</td><td class="${p.stock<=p.min?'money minus':''}">${p.stock}</td><td>${p.min}</td><td><div class="actions"><button onclick="editPart('${p.id}')">Redaktə</button><button onclick="deletePart('${p.id}')">Sil</button></div></td></tr>`).join('')}
+window.editPart=id=>{let p=read(K.parts).find(x=>x.id===id);if(!p)return;$('pId').value=p.id;$('pCode').value=p.code||'';$('pName').value=p.name;$('pBuy').value=p.buy;$('pSell').value=p.sell;$('pStock').value=p.stock;$('pMin').value=p.min;openM('partEditModal')};window.deletePart=id=>{if(confirm('Hissə silinsin?')){write(K.parts,read(K.parts).filter(x=>x.id!==id));renderParts()}};
 
-</script>
-</body>
-</html>
+$('stockMoveBtn').onclick=()=>{let p=read(K.parts);if(!p.length)return alert('Əvvəl ehtiyat hissəsi əlavə edin.');$('moveForm').reset();$('mPart').innerHTML=p.map(x=>`<option value="${x.id}">${esc(x.name)} (${x.stock})</option>`).join('');openM('stockMoveModal')};
+$('moveForm').onsubmit=e=>{e.preventDefault();let parts=read(K.parts),p=parts.find(x=>x.id===$('mPart').value),q=Number($('mQty').value||0),type=$('mType').value;if(!p||q<=0)return;if(type==='out'&&q>p.stock)return alert('Anbarda kifayət qədər stok yoxdur.');p.stock+=type==='in'?q:-q;write(K.parts,parts);let m=read(K.moves);m.unshift({id:uid(),date:today(),partId:p.id,part:p.name,type,qty:q,note:$('mNote').value.trim()});write(K.moves,m);closeM('stockMoveModal');renderWarehouse();note('Anbar yeniləndi')};
+function renderWarehouse(){let p=read(K.parts),m=read(K.moves);$('whTypes').textContent=p.length;$('whStock').textContent=p.reduce((s,x)=>s+Number(x.stock||0),0);$('whValue').textContent=money(p.reduce((s,x)=>s+x.stock*x.buy,0));$('whLow').textContent=p.filter(x=>x.stock<=x.min).length;$('movesEmpty').textContent=m.length?'':'Anbar hərəkəti yoxdur.';$('movesBody').innerHTML=m.map(x=>`<tr><td>${x.date}</td><td>${esc(x.part)}</td><td>${x.type==='in'?'Giriş':'Çıxış'}</td><td>${x.qty}</td><td>${esc(x.note||'-')}</td></tr>`).join('')}
+
+$('addFinanceBtn').onclick=()=>{$('financeForm').reset();$('fDate').value=today();openM('financeEditModal')};$('financeForm').onsubmit=e=>{e.preventDefault();let a=read(K.finance);a.unshift({id:uid(),type:$('fType').value,category:$('fCategory').value.trim(),amount:Number($('fAmount').value||0),date:$('fDate').value,note:$('fNote').value.trim()});write(K.finance,a);closeM('financeEditModal');renderFinance();note('Maliyyə əməliyyatı əlavə edildi')};
+function renderFinance(){let a=read(K.finance),service=read(K.jobs).reduce((s,j)=>s+Number(j.price||0),0),inc=a.filter(x=>x.type==='income').reduce((s,x)=>s+x.amount,0),exp=a.filter(x=>x.type==='expense').reduce((s,x)=>s+x.amount,0);$('finService').textContent=money(service);$('finExtra').textContent=money(inc);$('finExpense').textContent=money(exp);$('finBalance').textContent=money(service+inc-exp);$('financeEmpty').textContent=a.length?'':'Əlavə maliyyə əməliyyatı yoxdur.';$('financeBody').innerHTML=a.map(x=>`<tr><td>${x.date}</td><td class="money ${x.type==='income'?'plus':'minus'}">${x.type==='income'?'Gəlir':'Xərc'}</td><td>${esc(x.category)}</td><td>${money(x.amount)}</td><td>${esc(x.note||'-')}</td><td><button onclick="deleteFinance('${x.id}')">Sil</button></td></tr>`).join('')} window.deleteFinance=id=>{write(K.finance,read(K.finance).filter(x=>x.id!==id));renderFinance()};
+
+$('addMasterBtn').onclick=()=>{$('masterForm').reset();$('msId').value='';openM('masterEditModal')};$('masterForm').onsubmit=e=>{e.preventDefault();let a=read(K.masters),id=$('msId').value,d={id:id||uid(),name:$('msName').value.trim(),phone:$('msPhone').value.trim(),skill:$('msSkill').value.trim()};if(id){let i=a.findIndex(x=>x.id===id);a[i]=d}else a.unshift(d);write(K.masters,a);closeM('masterEditModal');renderMasters();note('Usta yadda saxlanıldı')};
+function renderMasters(){let a=read(K.masters),jobs=read(K.jobs);$('mastersEmpty').textContent=a.length?'':'Hələ usta əlavə edilməyib.';$('mastersBody').innerHTML=a.map(m=>{let j=jobs.filter(x=>x.master===m.name);return `<tr><td><b>${esc(m.name)}</b></td><td>${esc(m.phone||'-')}</td><td>${esc(m.skill||'-')}</td><td>${j.length}</td><td>${money(j.reduce((s,x)=>s+Number(x.price||0),0))}</td><td><div class="actions"><button onclick="editMaster('${m.id}')">Redaktə</button><button onclick="deleteMaster('${m.id}')">Sil</button></div></td></tr>`}).join('')}
+window.editMaster=id=>{let m=read(K.masters).find(x=>x.id===id);if(!m)return;$('msId').value=m.id;$('msName').value=m.name;$('msPhone').value=m.phone||'';$('msSkill').value=m.skill||'';openM('masterEditModal')};window.deleteMaster=id=>{if(confirm('Usta silinsin?')){write(K.masters,read(K.masters).filter(x=>x.id!==id));renderMasters()}};
+
+$('addWarrantyBtn').onclick=()=>{$('warrantyForm').reset();$('wStart').value=today();openM('warrantyEditModal')};$('warrantyForm').onsubmit=e=>{e.preventDefault();let a=read(K.warranty);a.unshift({id:uid(),plate:$('wPlate').value.trim().toUpperCase(),car:$('wCar').value.trim(),work:$('wWork').value.trim(),start:$('wStart').value,end:$('wEnd').value,km:Number($('wKm').value||0)});write(K.warranty,a);closeM('warrantyEditModal');renderWarranty();note('Zəmanət əlavə edildi')};
+function renderWarranty(){let a=read(K.warranty),t=today();$('warrantyEmpty').textContent=a.length?'':'Zəmanət qeydi yoxdur.';$('warrantyBody').innerHTML=a.map(w=>{let active=!w.end||w.end>=t;return `<tr><td>${esc(w.car||'-')}</td><td><b>${esc(w.plate)}</b></td><td>${esc(w.work)}</td><td>${w.start}</td><td>${w.end||'-'}</td><td>${w.km||'-'}</td><td><span class="badge">${active?'Aktiv':'Bitib'}</span></td><td><button onclick="deleteWarranty('${w.id}')">Sil</button></td></tr>`}).join('')}window.deleteWarranty=id=>{write(K.warranty,read(K.warranty).filter(x=>x.id!==id));renderWarranty()};
+
+function renderReports(){let jobs=read(K.jobs),cars=read(K.cars),cs=read(K.customers),parts=read(K.parts),f=read(K.finance),revenue=jobs.reduce((s,x)=>s+Number(x.price||0),0),expense=f.filter(x=>x.type==='expense').reduce((s,x)=>s+x.amount,0),extra=f.filter(x=>x.type==='income').reduce((s,x)=>s+x.amount,0);let data=[['İş sifarişləri',jobs.length],['Avtomobillər',cars.length],['Müştərilər',cs.length],['Dövriyyə',money(revenue)],['Xərclər',money(expense)],['Balans',money(revenue+extra-expense)],['Anbar hissələri',parts.length],['Aktiv zəmanət',read(K.warranty).filter(x=>!x.end||x.end>=today()).length],['Ustalar',read(K.masters).length]];$('reportGrid').innerHTML=data.map(x=>`<div class="reportbox">${x[0]}<b>${x[1]}</b></div>`).join('');$('reportNote').innerHTML=`Hazır: <b>${jobs.filter(x=>x.status==='Hazır').length}</b> • Təmirdə/diaqnostika: <b>${jobs.filter(x=>['Təmirdə','Diaqnostika','Qəbul edildi'].includes(x.status)).length}</b> • Təhvil verilib: <b>${jobs.filter(x=>x.status==='Təhvil verildi').length}</b>`}
+
+$('msgSearch').oninput=renderMessages;function renderMessages(){syncCustomers();let q=$('msgSearch').value.toLowerCase(),cs=read(K.customers).filter(c=>[c.name,c.phone].join(' ').toLowerCase().includes(q));$('messagesEmpty').textContent=cs.length?'':'Müştəri tapılmadı.';$('messagesBody').innerHTML=cs.map(c=>{let car=customerCars(c)[0],j=customerJobs(c)[0],digits=norm(c.phone).replace(/\D/g,'');return `<tr><td>${esc(c.name)}</td><td>${esc(c.phone)}</td><td>${esc(car?.car||'-')} ${esc(car?.plate||'')}</td><td>${esc(j?.status||'-')}</td><td>${digits?`<a class="wa" target="_blank" href="https://wa.me/${digits}">WhatsApp</a>`:'-'}</td></tr>`}).join('')}
+
+function loadSettings(){let s=readObj(K.settings);$('sService').value=s.service||'AXM Group Service';$('sPhone').value=s.phone||'077 600 00 80';$('sManager').value=s.manager||'';$('sCurrency').value=s.currency||'AZN';$('sAddress').value=s.address||''}
+$('settingsForm').onsubmit=e=>{e.preventDefault();writeObj(K.settings,{service:$('sService').value.trim(),phone:$('sPhone').value.trim(),manager:$('sManager').value.trim(),currency:$('sCurrency').value.trim(),address:$('sAddress').value.trim()});note('Tənzimləmələr yadda saxlanıldı');closeM('settingsModal')};
+syncCustomers();fillMasters();
+</script></body></html>
