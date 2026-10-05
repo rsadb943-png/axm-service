@@ -6,8 +6,10 @@
 <title>AXM Group Service</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;background:#071017;color:#fff;font-family:Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+.scroll{width:100%;min-height:100vh;background:#071017}
 .stage{position:relative;width:100%;max-width:1536px;aspect-ratio:3/2;margin:auto;background:#071017;overflow:hidden}
-.bg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bg{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none}
 .hot{position:absolute;border:0;background:transparent;cursor:pointer;border-radius:8px}
 .hot:hover{outline:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.025)}
 #home{left:.8%;top:13.1%;width:13.7%;height:5.3%}
@@ -25,51 +27,210 @@
 #calendar{left:1.1%;top:71.4%;width:12.8%;height:4.4%}
 #messages{left:1.1%;top:76.7%;width:12.8%;height:4.4%}
 #settings{left:1.1%;top:81.9%;width:12.8%;height:4.4%}
-.modal{position:fixed;inset:0;background:#000c;display:none;place-items:center;padding:20px;z-index:10}
-.modal.open{display:grid}.box{width:min(700px,100%);background:#101a21;border:1px solid #344550;border-radius:13px;padding:20px;box-shadow:0 30px 80px #000}
-.head{display:flex;justify-content:space-between;align-items:center}.head h2{margin:0 0 16px}.x{border:0;background:none;color:#fff;font-size:28px;cursor:pointer}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form input,.form select,.form textarea{background:#091117;color:#fff;border:1px solid #344650;border-radius:7px;padding:12px}.form textarea{grid-column:1/-1;min-height:90px}.save{grid-column:1/-1;border:0;border-radius:7px;background:#e51f2a;color:#fff;padding:13px;font-weight:700;cursor:pointer}
-.toast{position:fixed;right:18px;bottom:18px;background:#121d24;border:1px solid #31434e;padding:13px 16px;border-radius:9px;display:none;z-index:20}
-@media(max-width:700px){.stage{width:1536px;height:1024px;transform-origin:top left}.scroll{overflow:auto;width:100vw;height:100vh}.form{grid-template-columns:1fr}.form textarea,.save{grid-column:auto}}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;place-items:center;padding:18px;z-index:20}
+.overlay.open{display:grid}
+.panel{width:min(1100px,96vw);max-height:92vh;overflow:auto;background:#101a21;border:1px solid #3a4b56;border-radius:14px;box-shadow:0 30px 90px #000;padding:20px}
+.panel.small{width:min(720px,96vw)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+.head h2{margin:0;font-size:24px}.x{border:0;background:none;color:#fff;font-size:30px;cursor:pointer}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.search{flex:1;min-width:220px;background:#091117;color:#fff;border:1px solid #344650;border-radius:8px;padding:11px 12px}
+.primary{border:0;border-radius:8px;background:#e52631;color:#fff;padding:11px 16px;font-weight:700;cursor:pointer}
+.secondary{border:1px solid #40515d;border-radius:8px;background:#17232b;color:#fff;padding:10px 14px;cursor:pointer}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form input,.form select,.form textarea{background:#091117;color:#fff;border:1px solid #344650;border-radius:8px;padding:12px;min-width:0}
+.form textarea{grid-column:1/-1;min-height:90px;resize:vertical}.full{grid-column:1/-1}
+.tablewrap{overflow:auto;border:1px solid #263741;border-radius:10px}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #263741;font-size:14px}
+th{background:#17242c;color:#c9d3d9;position:sticky;top:0}tr:hover td{background:#132029}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#23343e;font-size:12px}
+.empty{padding:34px;text-align:center;color:#9daab2}
+.actions{display:flex;gap:6px}.actions button{padding:6px 9px;border-radius:6px;border:1px solid #40515d;background:#17232b;color:#fff;cursor:pointer}
+.cardgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{background:#14212a;border:1px solid #293a45;border-radius:10px;padding:14px}.stat b{font-size:22px;display:block;margin-top:5px}
+.toast{position:fixed;right:18px;bottom:18px;background:#121d24;border:1px solid #31434e;padding:13px 16px;border-radius:9px;display:none;z-index:50}
+.muted{color:#9ba8b0;font-size:13px}
+@media(max-width:760px){
+ .stage{width:1536px;height:1024px;transform-origin:top left}.scroll{overflow:auto;width:100vw;height:100vh}
+ .form{grid-template-columns:1fr}.form textarea,.full{grid-column:auto}.cardgrid{grid-template-columns:1fr 1fr}
+ .panel{padding:14px}.head h2{font-size:20px}
+}
 </style>
 </head>
 <body>
 <div class="scroll"><div class="stage">
 <img class="bg" src="axm-dashboard.png" alt="AXM Group Service dashboard">
 <button class="hot" id="home" aria-label="Ana səhifə"></button>
-<button class="hot" id="newjob" aria-label="Yeni iş qəbulu"></button><button class="hot" id="newjob2" aria-label="Yeni iş qəbulu"></button>
-<button class="hot" id="cars" aria-label="Avtomobillər"></button><button class="hot" id="customers" aria-label="Müştərilər"></button>
-<button class="hot" id="orders" aria-label="İş sifarişləri"></button><button class="hot" id="parts" aria-label="Ehtiyat hissələri"></button>
-<button class="hot" id="warehouse" aria-label="Anbar"></button><button class="hot" id="finance" aria-label="Maliyyə"></button>
-<button class="hot" id="masters" aria-label="Ustalar"></button><button class="hot" id="warranty" aria-label="Zəmanət"></button>
-<button class="hot" id="reports" aria-label="Hesabatlar"></button><button class="hot" id="calendar" aria-label="Təqvim"></button>
-<button class="hot" id="messages" aria-label="Mesajlar"></button><button class="hot" id="settings" aria-label="Tənzimləmələr"></button>
+<button class="hot" id="newjob" aria-label="Yeni iş qəbulu"></button>
+<button class="hot" id="newjob2" aria-label="Yeni iş qəbulu"></button>
+<button class="hot" id="cars" aria-label="Avtomobillər"></button>
+<button class="hot" id="customers" aria-label="Müştərilər"></button>
+<button class="hot" id="orders" aria-label="İş sifarişləri"></button>
+<button class="hot" id="parts" aria-label="Ehtiyat hissələri"></button>
+<button class="hot" id="warehouse" aria-label="Anbar"></button>
+<button class="hot" id="finance" aria-label="Maliyyə"></button>
+<button class="hot" id="masters" aria-label="Ustalar"></button>
+<button class="hot" id="warranty" aria-label="Zəmanət"></button>
+<button class="hot" id="reports" aria-label="Hesabatlar"></button>
+<button class="hot" id="calendar" aria-label="Təqvim"></button>
+<button class="hot" id="messages" aria-label="Mesajlar"></button>
+<button class="hot" id="settings" aria-label="Tənzimləmələr"></button>
 </div></div>
 
-<div id="modal" class="modal"><div class="box">
-<div class="head"><h2>Yeni İş Qəbulu</h2><button class="x" onclick="closeModal()">×</button></div>
-<div class="form">
-<input id="name" placeholder="Müştərinin adı"><input id="phone" placeholder="Telefon">
-<input id="car" placeholder="Avtomobil"><input id="plate" placeholder="Dövlət nömrəsi">
-<input id="vin" placeholder="VIN"><input id="km" type="number" placeholder="Yürüş / km">
-<textarea id="work" placeholder="Şikayət / görüləcək iş"></textarea>
-<input id="price" type="number" placeholder="Məbləğ AZN">
-<select id="status"><option>Təmirdə</option><option>Diaqnostika</option><option>Hazır</option><option>Təhvil verildi</option></select>
-<button class="save" onclick="save()">Yadda saxla</button>
-</div></div></div>
+<!-- Yeni iş -->
+<div id="jobModal" class="overlay"><div class="panel small">
+ <div class="head"><h2>Yeni İş Qəbulu</h2><button class="x" data-close="jobModal">×</button></div>
+ <form id="jobForm" class="form">
+  <input id="jName" placeholder="Müştərinin adı *" required>
+  <input id="jPhone" placeholder="Telefon">
+  <input id="jCar" placeholder="Avtomobil (marka/model) *" required>
+  <input id="jPlate" placeholder="Dövlət nömrəsi *" required>
+  <input id="jVin" placeholder="VIN">
+  <input id="jKm" type="number" min="0" placeholder="Yürüş / km">
+  <textarea id="jWork" placeholder="Şikayət / görüləcək iş"></textarea>
+  <input id="jPrice" type="number" min="0" step="0.01" placeholder="Məbləğ AZN">
+  <select id="jStatus"><option>Təmirdə</option><option>Diaqnostika</option><option>Hazır</option><option>Təhvil verildi</option></select>
+  <button class="primary full" type="submit">Yadda saxla</button>
+ </form>
+</div></div>
+
+<!-- Avtomobillər -->
+<div id="carsModal" class="overlay"><div class="panel">
+ <div class="head"><div><h2>Avtomobillər</h2><div class="muted">Servisdə qeydiyyatda olan avtomobillər və servis tarixçəsi</div></div><button class="x" data-close="carsModal">×</button></div>
+ <div class="cardgrid">
+  <div class="stat">Ümumi avtomobil<b id="carCount">0</b></div>
+  <div class="stat">Təmirdə<b id="repairCount">0</b></div>
+  <div class="stat">Hazır<b id="readyCount">0</b></div>
+  <div class="stat">Təhvil verilib<b id="deliveredCount">0</b></div>
+ </div>
+ <div class="toolbar">
+  <input id="carSearch" class="search" placeholder="Nömrə, VIN, avtomobil və ya müştəri üzrə axtar...">
+  <button id="addCarBtn" class="primary">+ Avtomobil əlavə et</button>
+ </div>
+ <div class="tablewrap">
+  <table>
+   <thead><tr><th>Dövlət №</th><th>Avtomobil</th><th>VIN</th><th>Yürüş</th><th>Müştəri</th><th>Telefon</th><th>Status</th><th>Son servis</th><th>Əməliyyat</th></tr></thead>
+   <tbody id="carsBody"></tbody>
+  </table>
+  <div id="carsEmpty" class="empty">Hələ avtomobil əlavə edilməyib.</div>
+ </div>
+</div></div>
+
+<!-- Avtomobil əlavə/redaktə -->
+<div id="carEditModal" class="overlay"><div class="panel small">
+ <div class="head"><h2 id="carEditTitle">Avtomobil əlavə et</h2><button class="x" data-close="carEditModal">×</button></div>
+ <form id="carForm" class="form">
+  <input type="hidden" id="cId">
+  <input id="cPlate" placeholder="Dövlət nömrəsi *" required>
+  <input id="cCar" placeholder="Marka / model *" required>
+  <input id="cVin" placeholder="VIN">
+  <input id="cKm" type="number" min="0" placeholder="Yürüş / km">
+  <input id="cOwner" placeholder="Müştəri">
+  <input id="cPhone" placeholder="Telefon">
+  <select id="cStatus"><option>Təmirdə</option><option>Diaqnostika</option><option>Hazır</option><option>Təhvil verildi</option></select>
+  <input id="cDate" type="date">
+  <button class="primary full" type="submit">Yadda saxla</button>
+ </form>
+</div></div>
+
+<!-- Tarixçə -->
+<div id="historyModal" class="overlay"><div class="panel">
+ <div class="head"><div><h2 id="historyTitle">Servis tarixçəsi</h2><div id="historySub" class="muted"></div></div><button class="x" data-close="historyModal">×</button></div>
+ <div class="tablewrap">
+  <table><thead><tr><th>Tarix</th><th>Görülən iş</th><th>Status</th><th>Məbləğ</th><th>Yürüş</th></tr></thead><tbody id="historyBody"></tbody></table>
+  <div id="historyEmpty" class="empty">Bu avtomobil üçün servis tarixçəsi yoxdur.</div>
+ </div>
+</div></div>
+
 <div id="toast" class="toast"></div>
+
 <script>
-const modal=document.getElementById('modal'), toast=document.getElementById('toast');
-function openModal(){modal.classList.add('open')} function closeModal(){modal.classList.remove('open')}
-newjob.onclick=openModal;newjob2.onclick=openModal;
-modal.onclick=e=>{if(e.target===modal)closeModal()}
-function note(t){toast.textContent=t;toast.style.display='block';setTimeout(()=>toast.style.display='none',1800)}
-function save(){
- const data={name:name.value,phone:phone.value,car:car.value,plate:plate.value,vin:vin.value,km:km.value,work:work.value,price:price.value,status:status.value,date:new Date().toISOString()};
- if(!data.name||!data.car||!data.plate){alert('Müştəri, avtomobil və dövlət nömrəsini doldur.');return}
- const a=JSON.parse(localStorage.getItem('axm_jobs')||'[]');a.unshift(data);localStorage.setItem('axm_jobs',JSON.stringify(a));closeModal();note('Yeni iş yadda saxlanıldı');
+const $=id=>document.getElementById(id);
+const KEYS={jobs:'axm_jobs_v2',cars:'axm_cars_v2'};
+const read=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
+const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+function openM(id){$(id).classList.add('open')}
+function closeM(id){$(id).classList.remove('open')}
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeM(b.dataset.close));
+document.querySelectorAll('.overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeM(m.id)}));
+function note(t){const x=$('toast');x.textContent=t;x.style.display='block';clearTimeout(window._tt);window._tt=setTimeout(()=>x.style.display='none',1800)}
+
+$('newjob').onclick=$('newjob2').onclick=()=>openM('jobModal');
+$('cars').onclick=()=>{renderCars();openM('carsModal')};
+$('home').onclick=()=>note('Ana səhifə');
+const pending={customers:'Müştərilər',orders:'İş Sifarişləri',parts:'Ehtiyat Hissələri',warehouse:'Anbar',finance:'Maliyyə',masters:'Ustalar',warranty:'Zəmanət',reports:'Hesabatlar',calendar:'Təqvim',messages:'Mesajlar',settings:'Tənzimləmələr'};
+Object.entries(pending).forEach(([id,label])=>$(id).onclick=()=>note(label+' bölməsi növbəti mərhələdə aktiv ediləcək'));
+
+$('jobForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const job={
+  id:uid(),name:$('jName').value.trim(),phone:$('jPhone').value.trim(),car:$('jCar').value.trim(),
+  plate:$('jPlate').value.trim().toUpperCase(),vin:$('jVin').value.trim().toUpperCase(),km:$('jKm').value,
+  work:$('jWork').value.trim(),price:$('jPrice').value,status:$('jStatus').value,
+  date:new Date().toISOString().slice(0,10)
+ };
+ if(!job.name||!job.car||!job.plate)return;
+ const jobs=read(KEYS.jobs);jobs.unshift(job);write(KEYS.jobs,jobs);
+ const cars=read(KEYS.cars);
+ let car=cars.find(c=>c.plate===job.plate || (job.vin && c.vin===job.vin));
+ if(car){
+  Object.assign(car,{car:job.car,vin:job.vin||car.vin,km:job.km||car.km,owner:job.name,phone:job.phone,status:job.status,lastService:job.date});
+ }else{
+  cars.unshift({id:uid(),plate:job.plate,car:job.car,vin:job.vin,km:job.km,owner:job.name,phone:job.phone,status:job.status,lastService:job.date});
+ }
+ write(KEYS.cars,cars);
+ e.target.reset();closeM('jobModal');note('Yeni iş və avtomobil yadda saxlanıldı');
+});
+
+$('addCarBtn').onclick=()=>{
+ $('carForm').reset();$('cId').value='';$('carEditTitle').textContent='Avtomobil əlavə et';$('cDate').value=new Date().toISOString().slice(0,10);openM('carEditModal')
+};
+$('carForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const cars=read(KEYS.cars), id=$('cId').value;
+ const data={id:id||uid(),plate:$('cPlate').value.trim().toUpperCase(),car:$('cCar').value.trim(),vin:$('cVin').value.trim().toUpperCase(),km:$('cKm').value,owner:$('cOwner').value.trim(),phone:$('cPhone').value.trim(),status:$('cStatus').value,lastService:$('cDate').value};
+ const duplicate=cars.find(c=>c.plate===data.plate && c.id!==data.id);
+ if(duplicate){alert('Bu dövlət nömrəsi artıq qeydiyyatdadır.');return}
+ if(id){const i=cars.findIndex(c=>c.id===id);if(i>=0)cars[i]=data}else cars.unshift(data);
+ write(KEYS.cars,cars);closeM('carEditModal');renderCars();note('Avtomobil yadda saxlanıldı');
+});
+$('carSearch').addEventListener('input',renderCars);
+
+function renderCars(){
+ const q=$('carSearch').value.trim().toLowerCase(), cars=read(KEYS.cars);
+ const filtered=cars.filter(c=>[c.plate,c.car,c.vin,c.owner,c.phone].join(' ').toLowerCase().includes(q));
+ $('carCount').textContent=cars.length;
+ $('repairCount').textContent=cars.filter(c=>c.status==='Təmirdə'||c.status==='Diaqnostika').length;
+ $('readyCount').textContent=cars.filter(c=>c.status==='Hazır').length;
+ $('deliveredCount').textContent=cars.filter(c=>c.status==='Təhvil verildi').length;
+ $('carsEmpty').style.display=filtered.length?'none':'block';
+ $('carsBody').innerHTML=filtered.map(c=>`<tr>
+  <td><b>${esc(c.plate)}</b></td><td>${esc(c.car)}</td><td>${esc(c.vin||'-')}</td><td>${esc(c.km||'-')}</td>
+  <td>${esc(c.owner||'-')}</td><td>${esc(c.phone||'-')}</td><td><span class="badge">${esc(c.status||'-')}</span></td>
+  <td>${esc(c.lastService||'-')}</td>
+  <td><div class="actions"><button onclick="historyCar('${c.id}')">Tarixçə</button><button onclick="editCar('${c.id}')">Redaktə</button><button onclick="deleteCar('${c.id}')">Sil</button></div></td>
+ </tr>`).join('');
 }
-const labels={home:'Ana səhifə',cars:'Avtomobillər',customers:'Müştərilər',orders:'İş Sifarişləri',parts:'Ehtiyat Hissələri',warehouse:'Anbar',finance:'Maliyyə',masters:'Ustalar',warranty:'Zəmanət',reports:'Hesabatlar',calendar:'Təqvim',messages:'Mesajlar',settings:'Tənzimləmələr'};
-Object.entries(labels).forEach(([id,label])=>document.getElementById(id).onclick=()=>note(label+' bölməsi — funksional səhifə növbəti mərhələdə bağlanacaq'));
+window.editCar=id=>{
+ const c=read(KEYS.cars).find(x=>x.id===id);if(!c)return;
+ $('cId').value=c.id;$('cPlate').value=c.plate;$('cCar').value=c.car;$('cVin').value=c.vin||'';$('cKm').value=c.km||'';$('cOwner').value=c.owner||'';$('cPhone').value=c.phone||'';$('cStatus').value=c.status||'Təmirdə';$('cDate').value=c.lastService||'';$('carEditTitle').textContent='Avtomobili redaktə et';openM('carEditModal')
+};
+window.deleteCar=id=>{
+ if(!confirm('Bu avtomobili silmək istəyirsiniz?'))return;
+ write(KEYS.cars,read(KEYS.cars).filter(c=>c.id!==id));renderCars();note('Avtomobil silindi')
+};
+window.historyCar=id=>{
+ const c=read(KEYS.cars).find(x=>x.id===id);if(!c)return;
+ $('historyTitle').textContent='Servis tarixçəsi — '+c.plate;$('historySub').textContent=[c.car,c.owner,c.vin].filter(Boolean).join(' • ');
+ const jobs=read(KEYS.jobs).filter(j=>j.plate===c.plate || (c.vin&&j.vin===c.vin));
+ $('historyEmpty').style.display=jobs.length?'none':'block';
+ $('historyBody').innerHTML=jobs.map(j=>`<tr><td>${esc(j.date)}</td><td>${esc(j.work||'-')}</td><td><span class="badge">${esc(j.status)}</span></td><td>${esc(j.price||0)} AZN</td><td>${esc(j.km||'-')}</td></tr>`).join('');
+ openM('historyModal')
+};
 </script>
-</body></html>
+</body>
+</html>
