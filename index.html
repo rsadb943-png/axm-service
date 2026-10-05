@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>AXM Group Service V4</title>
+<title>AXM Group Service V5</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;background:#071017;color:#fff;font-family:Arial,sans-serif}button,input,select,textarea{font:inherit}
 .scroll{width:100%;min-height:100vh;background:#071017}.stage{position:relative;width:100%;max-width:1536px;aspect-ratio:3/2;margin:auto;background:#071017;overflow:hidden}
@@ -29,6 +29,13 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 .reportgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.reportbox{background:#14212a;border:1px solid #293a45;border-radius:10px;padding:18px}.reportbox b{display:block;font-size:28px;margin-top:8px}
 .settingrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.note{padding:12px;background:#0b141a;border:1px solid #293a45;border-radius:9px;margin:10px 0}.wa{color:#70e6a0}
 @media(max-width:760px){.stage{width:1536px;height:1024px;transform-origin:top left}.scroll{overflow:auto;width:100vw;height:100vh}.form,.settingrow{grid-template-columns:1fr}.form textarea,.full{grid-column:auto}.cardgrid,.reportgrid{grid-template-columns:1fr 1fr}.panel{padding:14px}.head h2{font-size:20px}}
+
+/* AXM V5 LIVE DASHBOARD */
+.liveDash{position:absolute;left:14.8%;right:1.4%;top:40.8%;bottom:2.5%;z-index:3;display:grid;grid-template-columns:1.55fr 1fr .72fr;grid-template-rows:1fr .72fr;gap:10px;pointer-events:auto}
+.ldCard{background:linear-gradient(145deg,rgba(20,36,46,.98),rgba(11,25,34,.98));border:1px solid #38505f;border-radius:9px;box-shadow:0 7px 18px rgba(0,0,0,.35);overflow:hidden;min-width:0}
+.ldHead{height:34px;padding:8px 11px;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:14px;border-bottom:1px solid #304551}.ldBtn{border:1px solid #435d6c;background:#263945;color:#fff;border-radius:6px;padding:4px 9px;font-size:11px;cursor:pointer}.ldTable{width:100%;min-width:0}.ldTable th,.ldTable td{padding:6px 7px;font-size:10px;border-bottom:1px solid #2b404c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ldTable th{position:static;background:#20323d}.ldStatus{padding:3px 6px;border-radius:5px;font-size:9px;display:inline-block}.s-ready{background:#1f9d55}.s-repair{background:#c89418}.s-diag{background:#2775d7}.s-delivered{background:#258c65}.s-new{background:#586b78}.chartWrap{height:calc(100% - 34px);padding:10px 12px 8px;display:flex;flex-direction:column}.chartLegend{font-size:10px;text-align:right;margin-bottom:5px}.chart{flex:1;display:flex;align-items:flex-end;gap:8px;border-left:1px solid #526773;border-bottom:1px solid #526773;padding:4px 8px 0}.barGroup{height:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;gap:4px;position:relative;padding-bottom:18px}.bar{width:28%;min-width:8px;border-radius:3px 3px 0 0;transition:.25s}.bar.income{background:#35d86f}.bar.expense{background:#ff4c38}.barLabel{position:absolute;bottom:2px;font-size:9px;color:#d4dce1}.liveCars{grid-column:1/3}.carStrip{height:calc(100% - 34px);display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px}.miniCar{background:#172a35;border:1px solid #38505f;border-radius:7px;padding:7px;overflow:hidden;cursor:pointer}.miniCar b{font-size:11px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.miniCar span{font-size:9px;color:#aebcc5}.plate{margin-top:6px;color:#fff!important;background:#0c151b;padding:3px 5px;border-radius:4px;display:inline-block}.upcoming{grid-column:3;grid-row:1/3}.upList{padding:5px 9px}.upItem{display:grid;grid-template-columns:42px 1fr;gap:7px;padding:8px 0;border-bottom:1px solid #2c414d;font-size:10px}.upDate{font-weight:700}.upText{overflow:hidden}.upText b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.emptyLive{height:100%;display:grid;place-items:center;color:#82939d;font-size:11px;padding:10px;text-align:center}
+.liveStats{position:absolute;left:14.8%;right:1.4%;top:27.3%;height:11.7%;z-index:4;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;pointer-events:auto}.liveStat{background:linear-gradient(145deg,rgba(23,42,53,.99),rgba(15,29,38,.99));border:1px solid #38505f;border-radius:9px;padding:10px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 15px rgba(0,0,0,.3);cursor:pointer}.liveIcon{width:42px;height:42px;border-radius:7px;display:grid;place-items:center;font-size:22px;font-weight:bold}.li-red{background:#e52831}.li-green{background:#20ad55}.li-yellow{background:#e8a700}.liveStat b{font-size:20px;display:block;line-height:1.05}.liveStat small{font-size:9px;color:#c2ccd2;display:block;margin-top:4px}.liveStat em{font-style:normal;font-size:9px;color:#43df77}.liveStat.exp em{color:#ff6258}
+@media(max-width:760px){.liveDash,.liveStats{pointer-events:auto}}
 </style>
 </head><body>
 <div class="scroll"><div class="stage">
@@ -36,6 +43,20 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 <button class="hot" id="home"></button><button class="hot" id="newjob"></button><button class="hot" id="newjob2"></button><button class="hot" id="cars"></button><button class="hot" id="customers"></button>
 <button class="hot" id="orders"></button><button class="hot" id="parts"></button><button class="hot" id="warehouse"></button><button class="hot" id="finance"></button><button class="hot" id="masters"></button>
 <button class="hot" id="warranty"></button><button class="hot" id="reports"></button><button class="hot" id="calendar"></button><button class="hot" id="messages"></button><button class="hot" id="settings"></button>
+<div class="liveStats" id="liveStats">
+ <div class="liveStat" onclick="renderOrders();openM('ordersModal')"><div class="liveIcon li-red">🚗</div><div><b id="dAccepted">0</b><small>Bu ay qəbul edilən</small><em id="dAcceptedTrend">Canlı</em></div></div>
+ <div class="liveStat" onclick="renderOrders();openM('ordersModal')"><div class="liveIcon li-green">🔧</div><div><b id="dReady">0</b><small>Hazır olan işlər</small><em>Canlı</em></div></div>
+ <div class="liveStat" onclick="renderOrders();openM('ordersModal')"><div class="liveIcon li-yellow">◷</div><div><b id="dRepair">0</b><small>Təmirdə olan</small><em>Canlı</em></div></div>
+ <div class="liveStat" onclick="renderFinance();openM('financeModal')"><div class="liveIcon li-green">₼</div><div><b id="dIncome">0 AZN</b><small>Bu ay gəlir</small><em>Canlı</em></div></div>
+ <div class="liveStat exp" onclick="renderFinance();openM('financeModal')"><div class="liveIcon li-red">🛒</div><div><b id="dExpense">0 AZN</b><small>Bu ay xərc</small><em>Canlı</em></div></div>
+</div>
+<div class="liveDash" id="liveDashboard">
+ <section class="ldCard"><div class="ldHead"><span>Son işlər</span><button class="ldBtn" onclick="renderOrders();openM('ordersModal')">Hamısını gör</button></div><div id="dRecent"></div></section>
+ <section class="ldCard"><div class="ldHead"><span>Aylıq statistika</span><span style="font-size:10px">● Gəlir &nbsp; ● Xərc</span></div><div class="chartWrap"><div class="chartLegend" id="dChartTotal"></div><div class="chart" id="dChart"></div></div></section>
+ <section class="ldCard upcoming"><div class="ldHead"><span>Yaxın tarixli işlər</span><button class="ldBtn" onclick="renderWarranty();openM('warrantyModal')">Hamısı</button></div><div class="upList" id="dUpcoming"></div></section>
+ <section class="ldCard liveCars"><div class="ldHead"><span>Servisdə olan avtomobillər</span><button class="ldBtn" onclick="renderCars();openM('carsModal')">Hamısını gör</button></div><div class="carStrip" id="dCars"></div></section>
+</div>
+
 </div></div>
 
 <div id="jobModal" class="overlay"><div class="panel small"><div class="head"><h2>Yeni İş Qəbulu</h2><button class="x" data-close="jobModal">×</button></div><form id="jobForm" class="form">
@@ -108,13 +129,13 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 
 <div id="settingsModal" class="overlay"><div class="panel small"><div class="head"><h2>Tənzimləmələr</h2><button class="x" data-close="settingsModal">×</button></div><form id="settingsForm" class="form">
 <input id="sService" placeholder="Servis adı"><input id="sPhone" placeholder="Servis telefonu"><input id="sManager" placeholder="Rəhbər / istifadəçi"><input id="sCurrency" placeholder="Valyuta" value="AZN"><textarea id="sAddress" placeholder="Ünvan / qeyd"></textarea><button class="primary full">Yadda saxla</button>
-</form><div class="note">AXM V4 məlumatları bu brauzerdə saxlayır. Mövcud V3 avtomobil, müştəri və iş məlumatları qorunur.</div></div></div>
+</form><div class="note">AXM V5 məlumatları bu brauzerdə saxlayır. Mövcud V3 avtomobil, müştəri və iş məlumatları qorunur.</div></div></div>
 
 <div id="toast" class="toast"></div>
 <script>
 const $=id=>document.getElementById(id);
 const K={jobs:'axm_jobs_v2',cars:'axm_cars_v2',customers:'axm_customers_v2',parts:'axm_parts_v4',moves:'axm_moves_v4',finance:'axm_finance_v4',masters:'axm_masters_v4',warranty:'axm_warranty_v4',settings:'axm_settings_v4'};
-const read=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}, write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const read=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}, write=(k,v)=>{localStorage.setItem(k,JSON.stringify(v));setTimeout(()=>{if(typeof renderDashboard==='function')renderDashboard()},0)};
 const readObj=k=>{try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return{}}}, writeObj=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8), today=()=>new Date().toISOString().slice(0,10), money=n=>Number(n||0).toFixed(2)+' AZN';
@@ -173,7 +194,38 @@ function renderReports(){let jobs=read(K.jobs),cars=read(K.cars),cs=read(K.custo
 
 $('msgSearch').oninput=renderMessages;function renderMessages(){syncCustomers();let q=$('msgSearch').value.toLowerCase(),cs=read(K.customers).filter(c=>[c.name,c.phone].join(' ').toLowerCase().includes(q));$('messagesEmpty').textContent=cs.length?'':'Müştəri tapılmadı.';$('messagesBody').innerHTML=cs.map(c=>{let car=customerCars(c)[0],j=customerJobs(c)[0],digits=norm(c.phone).replace(/\D/g,'');return `<tr><td>${esc(c.name)}</td><td>${esc(c.phone)}</td><td>${esc(car?.car||'-')} ${esc(car?.plate||'')}</td><td>${esc(j?.status||'-')}</td><td>${digits?`<a class="wa" target="_blank" href="https://wa.me/${digits}">WhatsApp</a>`:'-'}</td></tr>`}).join('')}
 
+
+function monthKey(d){return String(d||'').slice(0,7)}
+function renderDashboard(){
+ const jobs=read(K.jobs), cars=read(K.cars), fin=read(K.finance), warranties=read(K.warranty);
+ const now=new Date(), mk=now.toISOString().slice(0,7);
+ const monthJobs=jobs.filter(j=>monthKey(j.date)===mk);
+ const monthFin=fin.filter(x=>monthKey(x.date)===mk);
+ const serviceIncome=monthJobs.reduce((s,j)=>s+Number(j.price||0),0);
+ const extraIncome=monthFin.filter(x=>x.type==='income').reduce((s,x)=>s+Number(x.amount||0),0);
+ const expense=monthFin.filter(x=>x.type==='expense').reduce((s,x)=>s+Number(x.amount||0),0);
+ $('dAccepted').textContent=monthJobs.length;
+ $('dReady').textContent=jobs.filter(j=>j.status==='Hazır').length;
+ $('dRepair').textContent=jobs.filter(j=>['Qəbul edildi','Diaqnostika','Təmirdə'].includes(j.status)).length;
+ $('dIncome').textContent=money(serviceIncome+extraIncome).replace('.00','');
+ $('dExpense').textContent=money(expense).replace('.00','');
+ const recent=[...jobs].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))).slice(0,5);
+ const statusClass=s=>s==='Hazır'?'s-ready':s==='Təhvil verildi'?'s-delivered':s==='Diaqnostika'?'s-diag':s==='Təmirdə'?'s-repair':'s-new';
+ $('dRecent').innerHTML=recent.length?`<table class="ldTable"><thead><tr><th>#</th><th>Tarix</th><th>Müştəri</th><th>Avtomobil</th><th>Status</th></tr></thead><tbody>${recent.map((j,i)=>`<tr><td>${esc(String(j.id||'').slice(-4).toUpperCase()||i+1)}</td><td>${esc(j.date||'-')}</td><td>${esc(j.name||'-')}</td><td>${esc(j.car||'-')}</td><td><span class="ldStatus ${statusClass(j.status)}">${esc(j.status||'-')}</span></td></tr>`).join('')}</tbody></table>`:'<div class="emptyLive">Hələ iş sifarişi yoxdur.<br>“Yeni iş qəbulu” ilə əlavə edin.</div>';
+ const active=cars.filter(c=>c.status!=='Təhvil verildi').slice(0,4);
+ $('dCars').innerHTML=active.length?active.map(c=>`<div class="miniCar" onclick="renderCars();openM('carsModal')"><b>${esc(c.car||'Avtomobil')}</b><span>${esc(c.owner||'Müştəri qeyd edilməyib')}</span><br><span class="plate">${esc(c.plate||'-')}</span><br><span>${esc(c.status||'-')}</span></div>`).join(''):'<div class="emptyLive" style="grid-column:1/-1">Hazırda servisdə aktiv avtomobil yoxdur.</div>';
+ let upcoming=warranties.filter(w=>w.end&&w.end>=today()).sort((a,b)=>a.end.localeCompare(b.end)).slice(0,6);
+ if(!upcoming.length) upcoming=[...jobs].filter(j=>j.status!=='Təhvil verildi').sort((a,b)=>String(a.date).localeCompare(String(b.date))).slice(0,6).map(j=>({end:j.date,car:j.car,plate:j.plate,work:j.work||j.status}));
+ $('dUpcoming').innerHTML=upcoming.length?upcoming.map(x=>`<div class="upItem"><div class="upDate">${esc((x.end||'').slice(5)||'-')}</div><div class="upText"><b>${esc(x.car||x.plate||'Avtomobil')}</b><span>${esc(x.work||x.plate||'')}</span></div></div>`).join(''):'<div class="emptyLive">Yaxın tarixli qeyd yoxdur.</div>';
+ const weeks=[0,0,0,0], costs=[0,0,0,0];
+ monthJobs.forEach(j=>{let day=Number(String(j.date).slice(8,10))||1,wi=Math.min(3,Math.floor((day-1)/7));weeks[wi]+=Number(j.price||0)});
+ monthFin.forEach(x=>{let day=Number(String(x.date).slice(8,10))||1,wi=Math.min(3,Math.floor((day-1)/7));if(x.type==='income')weeks[wi]+=Number(x.amount||0);else costs[wi]+=Number(x.amount||0)});
+ const max=Math.max(1,...weeks,...costs);
+ $('dChart').innerHTML=weeks.map((v,i)=>`<div class="barGroup"><div class="bar income" title="${money(v)}" style="height:${Math.max(v?5:0,v/max*82)}%"></div><div class="bar expense" title="${money(costs[i])}" style="height:${Math.max(costs[i]?5:0,costs[i]/max*82)}%"></div><span class="barLabel">${i+1} həftə</span></div>`).join('');
+ $('dChartTotal').textContent=`Gəlir ${money(serviceIncome+extraIncome)} • Xərc ${money(expense)}`;
+}
+
 function loadSettings(){let s=readObj(K.settings);$('sService').value=s.service||'AXM Group Service';$('sPhone').value=s.phone||'077 600 00 80';$('sManager').value=s.manager||'';$('sCurrency').value=s.currency||'AZN';$('sAddress').value=s.address||''}
 $('settingsForm').onsubmit=e=>{e.preventDefault();writeObj(K.settings,{service:$('sService').value.trim(),phone:$('sPhone').value.trim(),manager:$('sManager').value.trim(),currency:$('sCurrency').value.trim(),address:$('sAddress').value.trim()});note('Tənzimləmələr yadda saxlanıldı');closeM('settingsModal')};
-syncCustomers();fillMasters();
+syncCustomers();fillMasters();renderDashboard();
 </script></body></html>
