@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>AXM Group Service V8</title>
+<title>AXM Group Service V8.1</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;background:#071017;color:#fff;font-family:Arial,sans-serif}button,input,select,textarea{font:inherit}
 .scroll{width:100%;min-height:100vh;background:#071017}.stage{position:relative;width:100%;max-width:1536px;aspect-ratio:3/2;margin:auto;background:#071017;overflow:hidden}
@@ -204,8 +204,8 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 <script>
 const $=id=>document.getElementById(id);
 const K={jobs:'axm_jobs_v2',cars:'axm_cars_v2',customers:'axm_customers_v2',parts:'axm_parts_v4',moves:'axm_moves_v4',finance:'axm_finance_v4',masters:'axm_masters_v4',payroll:'axm_payroll_v6',warranty:'axm_warranty_v4',settings:'axm_settings_v4',audit:'axm_audit_v5',cash:'axm_cash_v7',cashshift:'axm_cashshift_v7'};
-const read=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}, write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
-const readObj=k=>{try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return{}}}, writeObj=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const read=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}, write=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){console.error('Storage write:',e);return false}};
+const readObj=k=>{try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return{}}}, writeObj=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){console.error('Storage write:',e);return false}};
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8), today=()=>new Date().toISOString().slice(0,10), money=n=>Number(n||0).toFixed(2)+' AZN';
 function openM(id){$(id)?.classList.add('open')} function closeM(id){$(id)?.classList.remove('open')}
@@ -421,6 +421,26 @@ $('cashPaymentBtn').onclick=()=>{if(!cashShift().open)return alert('Əvvəl kass
 $('cashRefundBtn').onclick=()=>{if(!cashShift().open)return alert('Əvvəl kassa növbəsini açın.');$('cashPaymentForm').reset();$('cpMode').value='refund';$('cashPaymentTitle').textContent='Geri qaytarma';fillCashJobs();openM('cashPaymentModal')};
 $('cpJob').onchange=()=>{let j=read(K.jobs).find(x=>x.id===$('cpJob').value);if(!j)return;$('cpCustomer').value=j.name||'';$('cpPlate').value=j.plate||'';if($('cpMode').value==='sale')$('cpAmount').value=jobTotals(j).remain.toFixed(2)};
 $('cashPaymentForm').onsubmit=e=>{e.preventDefault();if(!cashShift().open)return alert('Kassa növbəsi bağlıdır.');let mode=$('cpMode').value,amount=Number($('cpAmount').value||0);if(amount<=0)return;let a=read(K.cash),seq=String(a.length+1).padStart(6,'0'),job=read(K.jobs).find(x=>x.id===$('cpJob').value),row={id:uid(),receiptNo:'AXM-'+seq,date:new Date().toISOString(),kind:mode,jobId:job?.id||'',jobNo:job?job.id.slice(-6).toUpperCase():'',customer:$('cpCustomer').value.trim(),plate:$('cpPlate').value.trim().toUpperCase(),amount,method:$('cpMethod').value,fiscal:$('cpFiscal').value.trim(),posRef:$('cpPosRef').value.trim(),note:$('cpNote').value.trim()};a.unshift(row);write(K.cash,a);if(job){let jobs=read(K.jobs),j=jobs.find(x=>x.id===job.id);j.paid=Math.max(0,Number(j.paid||0)+(mode==='refund'?-amount:amount));write(K.jobs,jobs)}let f=read(K.finance);f.unshift({id:uid(),type:mode==='refund'?'expense':'income',category:mode==='refund'?'Müştəriyə geri qaytarma':'Kassa ödənişi',amount,date:today(),note:`${row.receiptNo} / ${row.plate} / ${row.method}${row.fiscal?' / Fiskal '+row.fiscal:''}`,jobId:row.jobId,cashId:row.id});write(K.finance,f);audit(mode==='refund'?'Kassa geri qaytarma':'Kassa ödənişi',row.jobId,`${amount}; ${row.method}`);closeM('cashPaymentModal');renderCashier();note('Kassa əməliyyatı yadda saxlanıldı')};
-window.printCashReceipt=id=>{let x=read(K.cash).find(y=>y.id===id);if(!x)return;let st=readObj(K.settings);let w=window.open('','_blank','width=420,height=700');w.document.write(`<html><head><title>${esc(x.receiptNo)}</title><style>body{font-family:Arial;padding:20px;color:#111}h2{text-align:center}.line{border-top:1px dashed #555;margin:12px 0}.r{display:flex;justify-content:space-between;margin:7px 0}small{display:block;text-align:center;margin-top:20px}</style></head><body><h2>AXM GROUP SERVICE</h2><div style="text-align:center">DAXİLİ KASSA QƏBZİ</div><div class="line"></div><div class="r"><b>Qəbz:</b><span>${esc(x.receiptNo)}</span></div><div class="r"><b>Tarix:</b><span>${esc(String(x.date).replace('T',' ').slice(0,16))}</span></div><div class="r"><b>Müştəri:</b><span>${esc(x.customer||'-')}</span></div><div class="r"><b>Avtomobil:</b><span>${esc(x.plate||'-')}</span></div><div class="r"><b>Ödəniş:</b><span>${esc(x.method)}</span></div><div class="r"><b>Məbləğ:</b><span>${money(x.amount)}</span></div><div class="r"><b>Fiskal/POS:</b><span>${esc(x.fiscal||x.posRef||'-')}</span></div><div class="line"></div><small>Bu daxili servis qəbzidir və rəsmi e-kassa fiskal çekini əvəz etmir.<br>${esc(st.phone||'077 600 00 80')}</small><script>window.print()<\/script>\n</body></html>`);w.document.close()};
+window.printCashReceipt=id=>{let x=read(K.cash).find(y=>y.id===id);if(!x)return;let st=readObj(K.settings);let w=window.open('','_blank','width=420,height=700');w.document.write(`<html><head><title>${esc(x.receiptNo)}</title><style>body{font-family:Arial;padding:20px;color:#111}h2{text-align:center}.line{border-top:1px dashed #555;margin:12px 0}.r{display:flex;justify-content:space-between;margin:7px 0}small{display:block;text-align:center;margin-top:20px}</style></head><body><h2>AXM GROUP SERVICE</h2><div style="text-align:center">DAXİLİ KASSA QƏBZİ</div><div class="line"></div><div class="r"><b>Qəbz:</b><span>${esc(x.receiptNo)}</span></div><div class="r"><b>Tarix:</b><span>${esc(String(x.date).replace('T',' ').slice(0,16))}</span></div><div class="r"><b>Müştəri:</b><span>${esc(x.customer||'-')}</span></div><div class="r"><b>Avtomobil:</b><span>${esc(x.plate||'-')}</span></div><div class="r"><b>Ödəniş:</b><span>${esc(x.method)}</span></div><div class="r"><b>Məbləğ:</b><span>${money(x.amount)}</span></div><div class="r"><b>Fiskal/POS:</b><span>${esc(x.fiscal||x.posRef||'-')}</span></div><div class="line"></div><small>Bu daxili servis qəbzidir və rəsmi e-kassa fiskal çekini əvəz etmir.<br>${esc(st.phone||'077 600 00 80')}</small><div style="display:none">print</div>\n</body></html>`);w.document.close()};
+
+
+// AXM V8.1 — etibarlı bölmə naviqasiyası
+(function(){
+  const nav={
+    cars:['carsModal','renderCars'], customers:['customersModal','renderCustomers'], orders:['ordersModal','renderOrders'],
+    parts:['partsModal','renderParts'], warehouse:['warehouseModal','renderWarehouse'], finance:['financeModal','renderFinance'],
+    masters:['mastersModal','renderMasters'], warranty:['warrantyModal','renderWarranty'], reports:['reportsModal','renderReports'],
+    messages:['messagesModal','renderMessages']
+  };
+  Object.entries(nav).forEach(([btn,[modal,fn]])=>{
+    const el=document.getElementById(btn); if(!el)return;
+    el.onclick=function(){ openM(modal); try{ if(typeof window[fn]==='function') window[fn](); else eval(fn+'()'); }catch(err){ console.error(fn,err); } };
+  });
+  const cal=document.getElementById('calendar'); if(cal)cal.onclick=()=>openM('calendarModal');
+  const set=document.getElementById('settings'); if(set)set.onclick=()=>{openM('settingsModal');try{loadSettings()}catch(e){console.error(e)}};
+  const nj=()=>{try{fillMasters()}catch(e){console.error(e)} openM('jobModal')};
+  if(document.getElementById('newjob'))document.getElementById('newjob').onclick=nj;
+  if(document.getElementById('newjob2'))document.getElementById('newjob2').onclick=nj;
+})();
 
 </script></body></html>
