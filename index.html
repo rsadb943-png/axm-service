@@ -43,98 +43,14 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 
 
 /* AXM iş sifarişi — A4 çap dizaynı */
-.print-panel{width:min(980px,96vw)}
+.print-panel{width:min(1120px,98vw)}
 .print-actions{display:flex;gap:8px;align-items:center}
-.print-sheet{background:#fff;color:#111;width:210mm;min-height:285mm;max-width:100%;margin:0 auto;padding:10mm;box-shadow:0 10px 35px #000;border-radius:2px;font-family:Arial,sans-serif}
-.po-head{display:flex;justify-content:space-between;gap:20px;border-bottom:3px solid #111;padding-bottom:10px}.po-brand{font-size:34px;font-weight:900;letter-spacing:-1px}.po-brand span{color:#e31d2b}.po-sub{font-size:11px;letter-spacing:4px;font-weight:700}.po-title{text-align:right}.po-title h1{font-size:23px;margin:0 0 7px}.po-no{background:#e31d2b;color:#fff;padding:5px 9px;border-radius:5px;margin-left:6px}.po-title div{font-size:12px;line-height:1.55}.po-contact{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;font-size:11px;border-bottom:1px solid #aaa}.po-grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.po-section{border:1px solid #aaa;margin-top:8px}.po-section h3{margin:0;background:#111b22;color:#fff;padding:6px 9px;font-size:12px;text-transform:uppercase}.po-kv{width:100%;border-collapse:collapse;min-width:0}.po-kv td{border-bottom:1px solid #ccc;padding:5px 7px;font-size:11px;color:#111;background:#fff}.po-kv td:first-child{font-weight:700;width:34%}.po-text{padding:9px;font-size:11px;min-height:38px}.po-total{margin-left:auto;width:280px;margin-top:8px;border-collapse:collapse;min-width:0}.po-total td{padding:5px 8px;border:1px solid #bbb;font-size:11px;color:#111;background:#fff}.po-total td:last-child{text-align:right;font-weight:700}.po-total .grand td{font-size:13px;font-weight:900}.po-sign{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px;margin-top:12px}.po-warranty{font-size:10px;line-height:1.55;border:1px solid #bbb;padding:8px}.po-signbox{height:72px;border:1px solid #bbb;display:flex;align-items:flex-end;justify-content:center;padding:7px;font-size:10px}.po-foot{margin-top:12px;background:#111b22;color:#fff;border-left:12px solid #e31d2b;padding:7px 10px;display:flex;justify-content:space-between;font-size:10px}.print-btn{background:#e31d2b!important;border-color:#e31d2b!important;font-weight:700}.print-only{display:none}
-@media print{body *{visibility:hidden!important}.print-sheet,.print-sheet *{visibility:visible!important}.print-sheet{position:absolute;left:0;top:0;width:210mm;max-width:none;min-height:297mm;padding:9mm;box-shadow:none;margin:0;border-radius:0}.overlay{background:#fff!important}.po-kv td,.po-total td{-webkit-print-color-adjust:exact;print-color-adjust:exact}.po-section h3,.po-foot,.po-no{-webkit-print-color-adjust:exact;print-color-adjust:exact}@page{size:A4;margin:0}}
-
+.print-sheet{background:#fff;color:#111;width:210mm;height:297mm;max-width:100%;margin:0 auto;box-shadow:0 12px 40px #000;border-radius:2px;font-family:Arial,sans-serif;overflow:hidden;display:flex;flex-direction:column}
+.a4-hero{height:44mm;position:relative;background:linear-gradient(105deg,#081119 0%,#15212a 58%,#090d10 100%);color:#fff;overflow:hidden;border-bottom:3px solid #e31d2b;padding:10mm 10mm 7mm}.a4-hero:after{content:'';position:absolute;right:-20mm;top:-30mm;width:95mm;height:95mm;border:12mm solid rgba(227,29,43,.10);transform:rotate(20deg)}
+.a4-logo{position:relative;z-index:2;font-size:31px;font-weight:900;letter-spacing:-1.5px;line-height:1}.a4-logo b{color:#ef1e2d}.a4-auto{font-size:9px;letter-spacing:5px;font-weight:700;margin:5px 0 12px}.a4-tag{font-size:10px;color:#d8e0e5;max-width:80mm}.a4-car{position:absolute;right:10mm;bottom:0;font-size:68px;filter:grayscale(1);opacity:.28;z-index:1}.a4-slogan{position:absolute;right:10mm;top:9mm;text-align:right;font-size:13px;font-weight:900;z-index:2}.a4-services{position:absolute;left:10mm;right:10mm;bottom:4mm;display:flex;gap:10px;flex-wrap:wrap;font-size:7.5px;color:#e8edf0;z-index:2}.a4-services span{border-right:1px solid #68737a;padding-right:9px}
+.a4-body{padding:6mm 7mm 4mm;flex:1;display:flex;flex-direction:column;gap:3.2mm}.a4-title{display:grid;grid-template-columns:1fr auto;align-items:stretch;min-height:18mm}.a4-title-main{background:linear-gradient(110deg,#e31d2b 0 48%,#111b22 48%);color:#fff;padding:4mm 6mm;font-size:20px;font-weight:900;letter-spacing:.2px}.a4-title-main small{display:block;font-size:8px;letter-spacing:4px;margin-top:2px}.a4-no{font-size:20px;float:right}.a4-dates{border:1px solid #c9ced2;padding:2.5mm 4mm;font-size:9px;line-height:1.65;min-width:58mm;background:#f7f8f9}.a4-grid2{display:grid;grid-template-columns:1fr 1fr;gap:3mm}.a4-section{border:1px solid #bfc5c9;background:#fff}.a4-section h3{margin:0;background:#172129;color:#fff;padding:2.2mm 3mm;font-size:9.5px;text-transform:uppercase;letter-spacing:.2px}.a4-section h3.red{border-left:4px solid #e31d2b}.a4-kv{width:100%;border-collapse:collapse;min-width:0}.a4-kv td{border-bottom:1px solid #d5d9dc;padding:1.65mm 2.5mm;font-size:8.5px;color:#111;background:#fff}.a4-kv td:first-child{font-weight:700;width:31%;background:#f7f8f9}.a4-text{padding:3mm;font-size:8.5px;min-height:13mm;line-height:1.45}.a4-work{width:100%;border-collapse:collapse;min-width:0}.a4-work th,.a4-work td{padding:1.7mm 2mm;border:1px solid #d0d4d7;color:#111;background:#fff;font-size:8px;position:static}.a4-work th{background:#f1f3f4;font-weight:800}.a4-work td:last-child,.a4-work th:last-child{text-align:right}.a4-bottom{display:grid;grid-template-columns:1.2fr .8fr 1.1fr;gap:3mm}.a4-checks,.a4-status,.a4-total{border:1px solid #bfc5c9}.a4-boxhead{background:#172129;color:#fff;font-size:9px;font-weight:800;padding:2mm 3mm}.a4-checks div,.a4-status .inside{padding:2.5mm 3mm;font-size:8px;line-height:1.7}.a4-status .big{font-size:11px;font-weight:900;color:#239b56}.a4-total table{width:100%;border-collapse:collapse;min-width:0}.a4-total td{padding:1.7mm 2.5mm;border-bottom:1px solid #d6d9dc;color:#111;background:#fff;font-size:8px}.a4-total td:last-child{text-align:right;font-weight:800}.a4-total .grand td{font-size:10px;font-weight:900;background:#f2f3f4}.a4-total .remain td{color:#d71920;font-weight:900;background:#fff0f1}.a4-warranty{display:grid;grid-template-columns:1.4fr 1fr;gap:3mm}.a4-warranty .terms,.a4-warranty .note{border:1px solid #bfc5c9;font-size:7.5px;line-height:1.55}.a4-warranty .content{padding:2.5mm 3mm}.a4-sign{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm;margin-top:auto}.a4-signbox{height:18mm;border:1px solid #c7ccd0;display:flex;align-items:flex-end;justify-content:center;padding:2mm;font-size:7.5px;position:relative}.a4-signbox:before{content:'';position:absolute;left:8mm;right:8mm;bottom:7mm;border-top:1px solid #777}.a4-footer{height:13mm;background:#101920;color:#fff;border-left:11mm solid #e31d2b;display:flex;align-items:center;justify-content:space-between;padding:0 8mm;font-size:7.5px}.a4-footer b{font-size:10px}.print-btn{background:#e31d2b!important;border-color:#e31d2b!important;font-weight:700}.print-only{display:none}
+@media print{html,body{width:210mm;height:297mm;background:#fff!important}body *{visibility:hidden!important}.print-sheet,.print-sheet *{visibility:visible!important}.print-sheet{position:fixed;left:0;top:0;width:210mm!important;height:297mm!important;max-width:none!important;box-shadow:none!important;margin:0!important;border-radius:0!important}.overlay{background:#fff!important}.a4-hero,.a4-title-main,.a4-section h3,.a4-boxhead,.a4-footer,.a4-total .remain td{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}@page{size:A4 portrait;margin:0}}
 </style>
-
-<style id="axm-pro-a4-print-style">
-@page { size: A4 portrait; margin: 0; }
-#axmPrintSheet{display:none}
-@media print{
-  body *{visibility:hidden!important}
-  #axmPrintSheet,#axmPrintSheet *{visibility:visible!important}
-  #axmPrintSheet{
-    display:block!important;position:absolute;left:0;top:0;width:210mm;height:297mm;
-    background:#fff;color:#111;font-family:Arial,sans-serif;box-sizing:border-box;
-    padding:8mm 9mm 7mm;overflow:hidden
-  }
-}
-.axm-print-preview{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.82);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:18px}
-.axm-print-toolbar{position:fixed;z-index:100001;right:24px;top:18px;display:flex;gap:8px}
-.axm-print-toolbar button{border:0;border-radius:8px;padding:11px 16px;font-weight:700;cursor:pointer}
-.axm-print-toolbar .print{background:#e21b16;color:#fff}.axm-print-toolbar .closep{background:#26313b;color:#fff}
-.axm-a4{width:210mm;min-height:297mm;background:#fff;color:#111;font-family:Arial,sans-serif;box-sizing:border-box;padding:8mm 9mm 7mm;box-shadow:0 10px 40px #000;position:relative}
-.axm-a4 *{box-sizing:border-box}.axm-a4 .brand{display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid #e21b16;padding-bottom:4mm}
-.axm-a4 .logo{font-size:28px;font-weight:900;letter-spacing:-1px}.axm-a4 .logo b{color:#e21b16}.axm-a4 .sub{font-size:9px;letter-spacing:4px;font-weight:700}
-.axm-a4 .wo{font-size:18px;font-weight:900;text-align:right}.axm-a4 .wo span{background:#e21b16;color:#fff;padding:5px 10px;border-radius:4px}
-.axm-a4 .meta{font-size:9px;line-height:1.55;text-align:right;margin-top:5px}
-.axm-a4 .title{margin-top:4mm;background:linear-gradient(120deg,#e21b16 0 46%,#121b24 46%);color:#fff;padding:3mm 5mm;font-size:18px;font-weight:900}
-.axm-a4 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:3mm}.axm-a4 .box{border:1px solid #aab2b9}
-.axm-a4 .bh{background:#18232c;color:#fff;font-weight:800;font-size:10px;padding:2mm 3mm;text-transform:uppercase}
-.axm-a4 .row{display:grid;grid-template-columns:31mm 1fr;border-top:1px solid #d5d9dd;min-height:7mm;font-size:9px}
-.axm-a4 .row:first-of-type{border-top:0}.axm-a4 .row b,.axm-a4 .row span{padding:1.8mm 2mm}.axm-a4 .row b{background:#f3f4f5;border-right:1px solid #d5d9dd}
-.axm-a4 .full{margin-top:3mm}.axm-a4 .text{padding:2.5mm 3mm;min-height:11mm;font-size:9px}
-.axm-a4 table{width:100%;border-collapse:collapse;font-size:8.5px}.axm-a4 th{background:#eef0f2}.axm-a4 th,.axm-a4 td{border:1px solid #c8cdd1;padding:1.8mm;text-align:left}.axm-a4 .num{text-align:right}
-.axm-a4 .bottom3{display:grid;grid-template-columns:1.1fr .8fr 1.05fr;gap:3mm;margin-top:3mm}
-.axm-a4 .status{padding:6mm 3mm;text-align:center;font-size:12px;font-weight:800}.axm-a4 .status i{font-style:normal;color:#2eae43;font-size:20px}
-.axm-a4 .sum td:first-child{font-weight:700}.axm-a4 .sum tr.total{font-size:11px;font-weight:900}.axm-a4 .sum tr.balance{color:#e21b16;font-size:11px;font-weight:900}
-.axm-a4 .warranty{display:grid;grid-template-columns:1.2fr .9fr;gap:3mm;margin-top:3mm}.axm-a4 ul{margin:2mm 0 2mm 6mm;padding:0;font-size:8px;line-height:1.5}
-.axm-a4 .signs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm;margin-top:3mm}.axm-a4 .sign{height:20mm;border:1px solid #c8cdd1;display:flex;align-items:flex-end;justify-content:center;padding:2mm;font-size:8px}
-.axm-a4 .foot{position:absolute;left:0;right:0;bottom:0;background:#121b24;color:#fff;border-bottom:5px solid #e21b16;padding:3mm 9mm;font-size:8px;display:flex;justify-content:space-between}
-@media(max-width:800px){.axm-print-preview{justify-content:flex-start}.axm-a4{transform-origin:top left}}
-</style>
-<script id="axm-pro-a4-print-script">
-(function(){
- const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
- function val(o,keys,f='—'){for(const k of keys){if(o&&o[k]!=null&&o[k]!=='')return o[k]}return f}
- function money(v){let n=Number(v||0);return n.toFixed(2)}
- window.axmProfessionalPrint=function(order={}){
-   // Supports existing order objects; missing fields remain blank rather than inventing data.
-   const no=val(order,['id','order_no','number'],'—'), customer=val(order,['customer','customer_name','name']),
-   phone=val(order,['phone','customer_phone']), address=val(order,['address']),
-   car=val(order,['car','vehicle','vehicle_name','model']), plate=val(order,['plate','license_plate']),
-   vin=val(order,['vin','VIN']), mileage=val(order,['mileage','km']), year=val(order,['year']),
-   complaint=val(order,['complaint','problem']), diagnosis=val(order,['diagnosis']),
-   master=val(order,['master','mechanic','technician'],'—'), status=val(order,['status'],'Təmirdə'),
-   date=val(order,['date','created_at'],new Date().toLocaleDateString('az-AZ'));
-   const jobs=Array.isArray(order.jobs)?order.jobs:[], parts=Array.isArray(order.parts)?order.parts:[];
-   const labor=Number(order.labor_total ?? jobs.reduce((a,x)=>a+Number(x.price||x.amount||0),0));
-   const partsTotal=Number(order.parts_total ?? parts.reduce((a,x)=>a+Number(x.total||((x.qty||1)*(x.price||0))),0));
-   const total=Number(order.total ?? labor+partsTotal), paid=Number(order.paid||0), balance=total-paid;
-   const jobRows=(jobs.length?jobs:[{}]).map((x,i)=>`<tr><td>${i+1}</td><td>${esc(val(x,['name','title','work'],''))}</td><td>${esc(val(x,['master','mechanic'],master))}</td><td class="num">${x.price!=null?money(x.price):''}</td></tr>`).join('');
-   const partRows=(parts.length?parts:[{}]).map((x,i)=>`<tr><td>${i+1}</td><td>${esc(val(x,['name','part'],''))}</td><td>${esc(val(x,['brand'],''))}</td><td>${esc(val(x,['qty','quantity'],''))}</td><td class="num">${x.price!=null?money(x.price):''}</td><td class="num">${x.total!=null?money(x.total):''}</td></tr>`).join('');
-   const html=`<div class="axm-a4" id="axmPrintSheet">
-    <div class="brand"><div><div class="logo"><b>AXM</b> GROUP</div><div class="sub">AUTO SERVICE</div></div><div><div class="wo">İŞ SİFARİŞİ <span>№ ${esc(no)}</span></div><div class="meta">Tarix: ${esc(date)}<br>Qəbul: ${esc(val(order,['accepted_at','accept_time'],'—'))}<br>Planlanan təhvil: ${esc(val(order,['delivery_date','planned_delivery'],'—'))}</div></div></div>
-    <div class="title">İŞ SİFARİŞİ / SERVİS İŞ KARTI</div>
-    <div class="grid2">
-     <div class="box"><div class="bh">Müştəri məlumatları</div><div class="row"><b>Ad Soyad</b><span>${esc(customer)}</span></div><div class="row"><b>Telefon</b><span>${esc(phone)}</span></div><div class="row"><b>Ünvan</b><span>${esc(address)}</span></div></div>
-     <div class="box"><div class="bh">Avtomobil məlumatları</div><div class="row"><b>Marka / Model</b><span>${esc(car)}</span></div><div class="row"><b>Dövlət nömrəsi</b><span>${esc(plate)}</span></div><div class="row"><b>VIN</b><span>${esc(vin)}</span></div><div class="row"><b>Yürüş / İl</b><span>${esc(mileage)} ${mileage!=='—'?'km':''} / ${esc(year)}</span></div></div>
-    </div>
-    <div class="grid2"><div class="box"><div class="bh">Müştərinin şikayəti</div><div class="text">${esc(complaint)}</div></div><div class="box"><div class="bh">Diaqnostika nəticəsi</div><div class="text">${esc(diagnosis)}</div></div></div>
-    <div class="box full"><div class="bh">Görülən işlər</div><table><thead><tr><th>#</th><th>İşin adı</th><th>Usta</th><th>Məbləğ (AZN)</th></tr></thead><tbody>${jobRows}</tbody></table></div>
-    <div class="box full"><div class="bh">İstifadə olunan ehtiyat hissələri</div><table><thead><tr><th>#</th><th>Hissənin adı</th><th>Brend</th><th>Miqdar</th><th>Qiymət</th><th>Cəmi</th></tr></thead><tbody>${partRows}</tbody></table></div>
-    <div class="bottom3">
-      <div class="box"><div class="bh">Yekun nəticə / qeyd</div><div class="text">${esc(val(order,['note','result'],'—'))}</div></div>
-      <div class="box"><div class="bh">Status</div><div class="status"><i>●</i><br>${esc(status)}</div></div>
-      <div class="box"><div class="bh">Məbləğ xülasəsi</div><table class="sum"><tr><td>İşlər:</td><td class="num">${money(labor)}</td></tr><tr><td>Hissələr:</td><td class="num">${money(partsTotal)}</td></tr><tr class="total"><td>Ümumi:</td><td class="num">${money(total)}</td></tr><tr><td>Ödənilən:</td><td class="num">${money(paid)}</td></tr><tr class="balance"><td>Qalan:</td><td class="num">${money(balance)}</td></tr></table></div>
-    </div>
-    <div class="warranty"><div class="box"><div class="bh">Zəmanət şərtləri</div><ul><li>Görülən işlərə servis tərəfindən müəyyən edilmiş zəmanət tətbiq olunur.</li><li>Zəmanət şərtləri iş sifarişində göstərilən iş və hissələrə aiddir.</li><li>Maye, yağ və xarici təsirlər zəmanətə daxil deyil.</li></ul></div><div class="box"><div class="bh">Əlavə qeyd</div><div class="text">${esc(val(order,['extra_note'],'—'))}</div></div></div>
-    <div class="signs"><div class="sign">Müştərinin imzası</div><div class="sign">Servisin imzası / möhür</div><div class="sign">${esc(master)}<br>&nbsp;</div></div>
-    <div class="foot"><span>AXM GROUP AUTO SERVICE</span><span>Keyfiyyətli servis, etibarlı yol!</span></div>
-   </div>`;
-   let old=document.getElementById('axmPrintPreview'); if(old) old.remove();
-   const wrap=document.createElement('div');wrap.id='axmPrintPreview';wrap.className='axm-print-preview';
-   wrap.innerHTML=`<div class="axm-print-toolbar"><button class="print" onclick="window.print()">🖨 A4 Çap et</button><button class="closep" onclick="document.getElementById('axmPrintPreview').remove()">✕ Bağla</button></div>${html}`;
-   document.body.appendChild(wrap);
- };
- // Alias commonly used print functions, while preserving existing behavior where possible.
- window.printWorkOrderA4=window.axmProfessionalPrint;
-})();
-</script>
 </head><body>
 <div class="scroll"><div class="stage">
 <img class="bg" src="axm-dashboard.png" alt="AXM Group Service dashboard">
@@ -265,24 +181,29 @@ $('orderSearch').oninput=renderOrders;
 function renderOrders(){let a=read(K.jobs),q=$('orderSearch').value.toLowerCase();let f=a.filter(j=>Object.values(j).join(' ').toLowerCase().includes(q));$('ordersEmpty').textContent=f.length?'':'Hələ iş sifarişi yoxdur.';$('ordersBody').innerHTML=f.map(j=>`<tr><td>${esc(j.date||'-')}</td><td>${esc(j.name)}</td><td>${esc(j.car)}<div class="muted">${esc(j.plate)}</div></td><td>${esc(j.work||'-')}</td><td>${esc(j.master||'-')}</td><td>${money(j.price)}</td><td><select onchange="changeJobStatus('${j.id}',this.value)">${['Qəbul edildi','Diaqnostika','Təmirdə','Hazır','Təhvil verildi'].map(s=>`<option ${s===j.status?'selected':''}>${s}</option>`).join('')}</select></td><td><div class="actions"><button class="print-btn" onclick="printJob('${j.id}')">🖨 Çap et</button><button class="danger" onclick="deleteJob('${j.id}')">Sil</button></div></td></tr>`).join('')}
 
 window.printJob=id=>{
-  const j=read(K.jobs).find(x=>x.id===id); if(!j)return alert('İş sifarişi tapılmadı.');
-  const c=read(K.cars).find(x=>x.plate===j.plate)||(j.vin?read(K.cars).find(x=>x.vin===j.vin):null)||{};
+  const jobs=read(K.jobs), j=jobs.find(x=>x.id===id); if(!j)return alert('İş sifarişi tapılmadı.');
+  const cars=read(K.cars), c=cars.find(x=>x.plate===j.plate)||(j.vin?cars.find(x=>x.vin===j.vin):null)||{};
   const st=readObj(K.settings), service=st.service||'AXM GROUP SERVICE', phone=st.phone||'077 600 00 80', address=st.address||'Bakı, Azərbaycan';
-  const num=String(read(K.jobs).findIndex(x=>x.id===id)+1).padStart(4,'0');
-  const price=Number(j.price||0), paid=Number(j.paid||0), remain=Math.max(0,price-paid);
-  const date=j.date||today();
+  const num=String(jobs.findIndex(x=>x.id===id)+1).padStart(4,'0');
+  const price=Number(j.price||0), paid=Number(j.paid||0), remain=Math.max(0,price-paid), date=j.date||today();
+  const workLines=String(j.work||'Qeyd edilməyib').split(/\n|,|;/).map(x=>x.trim()).filter(Boolean).slice(0,5);
+  const rows=workLines.map((w,i)=>`<tr><td>${i+1}</td><td>${esc(w)}</td><td>${esc(j.master||'-')}</td><td>${i===0?money(price):'-'}</td></tr>`).join('');
   $('printOrderSheet').innerHTML=`
-    <div class="po-head"><div><div class="po-brand"><span>AXM</span> GROUP</div><div class="po-sub">AUTO SERVICE</div></div><div class="po-title"><h1>İŞ SİFARİŞİ <span class="po-no">№ ${num}</span></h1><div>Tarix: <b>${esc(date)}</b></div><div>Status: <b>${esc(j.status||'-')}</b></div></div></div>
-    <div class="po-contact"><span>📍 ${esc(address)}</span><span>☎ ${esc(phone)}</span><span>${esc(service)}</span></div>
-    <div class="po-grid2">
-      <div class="po-section"><h3>Müştəri məlumatları</h3><table class="po-kv"><tr><td>Ad Soyad</td><td>${esc(j.name||'-')}</td></tr><tr><td>Telefon</td><td>${esc(j.phone||'-')}</td></tr></table></div>
-      <div class="po-section"><h3>Avtomobil məlumatları</h3><table class="po-kv"><tr><td>Marka / Model</td><td>${esc(j.car||c.car||'-')}</td></tr><tr><td>Dövlət nömrəsi</td><td><b>${esc(j.plate||c.plate||'-')}</b></td></tr><tr><td>VIN</td><td>${esc(j.vin||c.vin||'-')}</td></tr><tr><td>Yürüş</td><td>${esc(j.km||c.km||'-')} km</td></tr></table></div>
+    <div class="a4-hero"><div class="a4-logo"><b>AXM</b> GROUP</div><div class="a4-auto">AUTO SERVICE</div><div class="a4-tag">Peşəkar avtomobil təmiri • Diaqnostika • Texniki xidmət</div><div class="a4-slogan">KEYFİYYƏTLİ SERVİS,<br>ETİBARLI YOL!</div><div class="a4-car">🚘</div><div class="a4-services"><span>⚙ MÜHƏRRİK</span><span>◉ SÜRƏTLƏR QUTUSU</span><span>▣ ELEKTRONİKA</span><span>▤ DİAQNOSTİKA</span><span>🔧 TEXNİKİ XİDMƏT</span></div></div>
+    <div class="a4-body">
+      <div class="a4-title"><div class="a4-title-main">İŞ SİFARİŞİ / SERVİS İŞ KARTI <span class="a4-no">№ ${num}</span><small>WORK ORDER</small></div><div class="a4-dates">📅 Tarix: <b>${esc(date)}</b><br>◷ Qəbul: <b>${esc(date)}</b><br>◷ Status: <b>${esc(j.status||'-')}</b></div></div>
+      <div class="a4-grid2">
+        <div class="a4-section"><h3>Müştəri məlumatları</h3><table class="a4-kv"><tr><td>Ad Soyad</td><td>${esc(j.name||'-')}</td></tr><tr><td>Telefon</td><td>${esc(j.phone||'-')}</td></tr><tr><td>Ünvan</td><td>${esc(address)}</td></tr><tr><td>Qeyd</td><td>AXM servis müştərisi</td></tr></table></div>
+        <div class="a4-section"><h3>Avtomobil məlumatları</h3><table class="a4-kv"><tr><td>Marka / Model</td><td>${esc(j.car||c.car||'-')}</td></tr><tr><td>Dövlət nömrəsi</td><td><b>${esc(j.plate||c.plate||'-')}</b></td></tr><tr><td>VIN</td><td>${esc(j.vin||c.vin||'-')}</td></tr><tr><td>Yürüş</td><td>${esc(j.km||c.km||'-')} km</td></tr></table></div>
+      </div>
+      <div class="a4-grid2"><div class="a4-section"><h3 class="red">Müştərinin şikayəti / sifariş</h3><div class="a4-text">${esc(j.work||'Qeyd edilməyib')}</div></div><div class="a4-section"><h3>Diaqnostika nəticəsi</h3><div class="a4-text">Servis baxışı və diaqnostika nəticələri iş prosesi zamanı qeyd edilir.</div></div></div>
+      <div class="a4-section"><h3 class="red">Görülən işlər</h3><table class="a4-work"><thead><tr><th style="width:8%">#</th><th>İşin adı</th><th style="width:22%">Usta</th><th style="width:20%">Məbləğ (AZN)</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="a4-section"><h3 class="red">İstifadə olunan ehtiyat hissələri</h3><table class="a4-work"><thead><tr><th style="width:8%">#</th><th>Hissənin adı</th><th>Brend</th><th>Miqdar</th><th>Qiymət</th><th>Cəmi</th></tr></thead><tbody><tr><td>1</td><td colspan="5">Ehtiyat hissəsi əlavə edilməyib</td></tr></tbody></table></div>
+      <div class="a4-bottom"><div class="a4-checks"><div class="a4-boxhead">YEKUN NƏTİCƏ</div><div>☑ Avtomobil servis qəbulundan keçirilib.<br>☑ Görülən işlər yoxlanılıb.<br>☑ İş sifarişi sistemdə qeydiyyata alınıb.</div></div><div class="a4-status"><div class="a4-boxhead">STATUS</div><div class="inside"><div class="big">✓ ${esc(j.status||'Qəbul edildi')}</div><br>Usta: <b>${esc(j.master||'-')}</b></div></div><div class="a4-total"><div class="a4-boxhead">MƏBLƏĞ XÜLASƏSİ</div><table><tr><td>İşlərin məbləği:</td><td>${money(price)}</td></tr><tr class="grand"><td>Ümumi məbləğ:</td><td>${money(price)}</td></tr><tr><td>Ödənilən:</td><td>${money(paid)}</td></tr><tr class="remain"><td>Qalan:</td><td>${money(remain)}</td></tr></table></div></div>
+      <div class="a4-warranty"><div class="terms"><div class="a4-boxhead">ZƏMANƏT ŞƏRTLƏRİ</div><div class="content">✓ Görülən işlərə servis tərəfindən müəyyən edilmiş zəmanət tətbiq olunur.<br>✓ Zəmanət yalnız bu iş sifarişində qeyd olunan işlərə aiddir.<br>✓ Xarici müdaxilə və düzgün olmayan istismar zəmanəti ləğv edə bilər.</div></div><div class="note"><div class="a4-boxhead">ƏLAVƏ QEYD</div><div class="content">Növbəti texniki baxış servis tövsiyəsinə uyğun aparılmalıdır.</div></div></div>
+      <div class="a4-sign"><div class="a4-signbox">Müştərinin imzası</div><div class="a4-signbox">Servisin imzası / möhür</div><div class="a4-signbox">${esc(j.master||'Məsul usta')}</div></div>
     </div>
-    <div class="po-section"><h3>Şikayət / görüləcək iş</h3><div class="po-text">${esc(j.work||'Qeyd edilməyib')}</div></div>
-    <div class="po-section"><h3>İş məlumatları</h3><table class="po-kv"><tr><td>Usta</td><td>${esc(j.master||'Təyin edilməyib')}</td></tr><tr><td>İşin statusu</td><td>${esc(j.status||'-')}</td></tr><tr><td>Servis tarixi</td><td>${esc(date)}</td></tr></table></div>
-    <table class="po-total"><tr><td>İş / sifariş məbləği:</td><td>${money(price)}</td></tr><tr class="grand"><td>Ümumi məbləğ:</td><td>${money(price)}</td></tr><tr><td>Ödənilən:</td><td>${money(paid)}</td></tr><tr><td>Qalan:</td><td>${money(remain)}</td></tr></table>
-    <div class="po-sign"><div class="po-warranty"><b>ZƏMANƏT ŞƏRTLƏRİ</b><br>• Görülən işlərə servis tərəfindən müəyyən edilmiş zəmanət şərtləri tətbiq olunur.<br>• Zəmanət yalnız AXM Group Service-də qeydiyyatda olan iş sifarişinə aiddir.<br>• Xarici müdaxilə və qaydalara uyğun olmayan istismar zəmanəti ləğv edə bilər.</div><div class="po-signbox">Müştərinin imzası</div><div class="po-signbox">Servisin imzası / möhür</div></div>
-    <div class="po-foot"><b>AXM GROUP SERVICE</b><span>Keyfiyyətli servis, etibarlı yol!</span></div>`;
+    <div class="a4-footer"><b>${esc(service)}</b><span>📍 ${esc(address)}</span><span>☎ ${esc(phone)}</span><span>Keyfiyyətli servis, etibarlı yol!</span></div>`;
   openM('printOrderModal');
 };
 
