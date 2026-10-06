@@ -41,6 +41,14 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 .gsr:last-child{border-bottom:0}.gsr:hover{background:#17262f}.gsr b{display:block;font-size:13px}.gsr small{display:block;color:#9eabb3;margin-top:3px}.gsr em{font-style:normal;font-size:11px;color:#8bd3f4;background:#142b37;padding:4px 7px;border-radius:999px;white-space:nowrap}
 .gsempty{padding:18px;text-align:center;color:#aab5bb;font-size:13px}
 
+
+/* AXM iş sifarişi — A4 çap dizaynı */
+.print-panel{width:min(980px,96vw)}
+.print-actions{display:flex;gap:8px;align-items:center}
+.print-sheet{background:#fff;color:#111;width:210mm;min-height:285mm;max-width:100%;margin:0 auto;padding:10mm;box-shadow:0 10px 35px #000;border-radius:2px;font-family:Arial,sans-serif}
+.po-head{display:flex;justify-content:space-between;gap:20px;border-bottom:3px solid #111;padding-bottom:10px}.po-brand{font-size:34px;font-weight:900;letter-spacing:-1px}.po-brand span{color:#e31d2b}.po-sub{font-size:11px;letter-spacing:4px;font-weight:700}.po-title{text-align:right}.po-title h1{font-size:23px;margin:0 0 7px}.po-no{background:#e31d2b;color:#fff;padding:5px 9px;border-radius:5px;margin-left:6px}.po-title div{font-size:12px;line-height:1.55}.po-contact{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;font-size:11px;border-bottom:1px solid #aaa}.po-grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.po-section{border:1px solid #aaa;margin-top:8px}.po-section h3{margin:0;background:#111b22;color:#fff;padding:6px 9px;font-size:12px;text-transform:uppercase}.po-kv{width:100%;border-collapse:collapse;min-width:0}.po-kv td{border-bottom:1px solid #ccc;padding:5px 7px;font-size:11px;color:#111;background:#fff}.po-kv td:first-child{font-weight:700;width:34%}.po-text{padding:9px;font-size:11px;min-height:38px}.po-total{margin-left:auto;width:280px;margin-top:8px;border-collapse:collapse;min-width:0}.po-total td{padding:5px 8px;border:1px solid #bbb;font-size:11px;color:#111;background:#fff}.po-total td:last-child{text-align:right;font-weight:700}.po-total .grand td{font-size:13px;font-weight:900}.po-sign{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px;margin-top:12px}.po-warranty{font-size:10px;line-height:1.55;border:1px solid #bbb;padding:8px}.po-signbox{height:72px;border:1px solid #bbb;display:flex;align-items:flex-end;justify-content:center;padding:7px;font-size:10px}.po-foot{margin-top:12px;background:#111b22;color:#fff;border-left:12px solid #e31d2b;padding:7px 10px;display:flex;justify-content:space-between;font-size:10px}.print-btn{background:#e31d2b!important;border-color:#e31d2b!important;font-weight:700}.print-only{display:none}
+@media print{body *{visibility:hidden!important}.print-sheet,.print-sheet *{visibility:visible!important}.print-sheet{position:absolute;left:0;top:0;width:210mm;max-width:none;min-height:297mm;padding:9mm;box-shadow:none;margin:0;border-radius:0}.overlay{background:#fff!important}.po-kv td,.po-total td{-webkit-print-color-adjust:exact;print-color-adjust:exact}.po-section h3,.po-foot,.po-no{-webkit-print-color-adjust:exact;print-color-adjust:exact}@page{size:A4;margin:0}}
+
 </style>
 </head><body>
 <div class="scroll"><div class="stage">
@@ -128,6 +136,10 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 <input id="sService" placeholder="Servis adı"><input id="sPhone" placeholder="Servis telefonu"><input id="sManager" placeholder="Rəhbər / istifadəçi"><input id="sCurrency" placeholder="Valyuta" value="AZN"><textarea id="sAddress" placeholder="Ünvan / qeyd"></textarea><button class="primary full">Yadda saxla</button>
 </form><div class="note">AXM V4 məlumatları bu brauzerdə saxlayır. Mövcud V3 avtomobil, müştəri və iş məlumatları qorunur.</div></div></div>
 
+
+<div id="printOrderModal" class="overlay"><div class="panel print-panel"><div class="head"><h2>İş kartı / Çap önizləmə</h2><div class="print-actions"><button class="primary print-btn" onclick="window.print()">🖨 Printerdən çap et</button><button class="x" data-close="printOrderModal">×</button></div></div>
+<div id="printOrderSheet" class="print-sheet"></div></div></div>
+
 <div id="toast" class="toast"></div>
 <script>
 const $=id=>document.getElementById(id);
@@ -165,7 +177,30 @@ function renderCustomers(){syncCustomers();let a=read(K.customers),q=$('customer
 window.editCustomer=id=>{let c=read(K.customers).find(x=>x.id===id);if(!c)return;$('uId').value=c.id;$('uName').value=c.name;$('uPhone').value=c.phone;$('uEmail').value=c.email||'';$('uDebt').value=c.debt||0;$('uNote').value=c.note||'';openM('customerEditModal')};window.deleteCustomer=id=>{if(confirm('Müştəri silinsin?')){write(K.customers,read(K.customers).filter(x=>x.id!==id));renderCustomers()}};
 
 $('orderSearch').oninput=renderOrders;
-function renderOrders(){let a=read(K.jobs),q=$('orderSearch').value.toLowerCase();let f=a.filter(j=>Object.values(j).join(' ').toLowerCase().includes(q));$('ordersEmpty').textContent=f.length?'':'Hələ iş sifarişi yoxdur.';$('ordersBody').innerHTML=f.map(j=>`<tr><td>${esc(j.date||'-')}</td><td>${esc(j.name)}</td><td>${esc(j.car)}<div class="muted">${esc(j.plate)}</div></td><td>${esc(j.work||'-')}</td><td>${esc(j.master||'-')}</td><td>${money(j.price)}</td><td><select onchange="changeJobStatus('${j.id}',this.value)">${['Qəbul edildi','Diaqnostika','Təmirdə','Hazır','Təhvil verildi'].map(s=>`<option ${s===j.status?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="danger" onclick="deleteJob('${j.id}')">Sil</button></td></tr>`).join('')}
+function renderOrders(){let a=read(K.jobs),q=$('orderSearch').value.toLowerCase();let f=a.filter(j=>Object.values(j).join(' ').toLowerCase().includes(q));$('ordersEmpty').textContent=f.length?'':'Hələ iş sifarişi yoxdur.';$('ordersBody').innerHTML=f.map(j=>`<tr><td>${esc(j.date||'-')}</td><td>${esc(j.name)}</td><td>${esc(j.car)}<div class="muted">${esc(j.plate)}</div></td><td>${esc(j.work||'-')}</td><td>${esc(j.master||'-')}</td><td>${money(j.price)}</td><td><select onchange="changeJobStatus('${j.id}',this.value)">${['Qəbul edildi','Diaqnostika','Təmirdə','Hazır','Təhvil verildi'].map(s=>`<option ${s===j.status?'selected':''}>${s}</option>`).join('')}</select></td><td><div class="actions"><button class="print-btn" onclick="printJob('${j.id}')">🖨 Çap et</button><button class="danger" onclick="deleteJob('${j.id}')">Sil</button></div></td></tr>`).join('')}
+
+window.printJob=id=>{
+  const j=read(K.jobs).find(x=>x.id===id); if(!j)return alert('İş sifarişi tapılmadı.');
+  const c=read(K.cars).find(x=>x.plate===j.plate)||(j.vin?read(K.cars).find(x=>x.vin===j.vin):null)||{};
+  const st=readObj(K.settings), service=st.service||'AXM GROUP SERVICE', phone=st.phone||'077 600 00 80', address=st.address||'Bakı, Azərbaycan';
+  const num=String(read(K.jobs).findIndex(x=>x.id===id)+1).padStart(4,'0');
+  const price=Number(j.price||0), paid=Number(j.paid||0), remain=Math.max(0,price-paid);
+  const date=j.date||today();
+  $('printOrderSheet').innerHTML=`
+    <div class="po-head"><div><div class="po-brand"><span>AXM</span> GROUP</div><div class="po-sub">AUTO SERVICE</div></div><div class="po-title"><h1>İŞ SİFARİŞİ <span class="po-no">№ ${num}</span></h1><div>Tarix: <b>${esc(date)}</b></div><div>Status: <b>${esc(j.status||'-')}</b></div></div></div>
+    <div class="po-contact"><span>📍 ${esc(address)}</span><span>☎ ${esc(phone)}</span><span>${esc(service)}</span></div>
+    <div class="po-grid2">
+      <div class="po-section"><h3>Müştəri məlumatları</h3><table class="po-kv"><tr><td>Ad Soyad</td><td>${esc(j.name||'-')}</td></tr><tr><td>Telefon</td><td>${esc(j.phone||'-')}</td></tr></table></div>
+      <div class="po-section"><h3>Avtomobil məlumatları</h3><table class="po-kv"><tr><td>Marka / Model</td><td>${esc(j.car||c.car||'-')}</td></tr><tr><td>Dövlət nömrəsi</td><td><b>${esc(j.plate||c.plate||'-')}</b></td></tr><tr><td>VIN</td><td>${esc(j.vin||c.vin||'-')}</td></tr><tr><td>Yürüş</td><td>${esc(j.km||c.km||'-')} km</td></tr></table></div>
+    </div>
+    <div class="po-section"><h3>Şikayət / görüləcək iş</h3><div class="po-text">${esc(j.work||'Qeyd edilməyib')}</div></div>
+    <div class="po-section"><h3>İş məlumatları</h3><table class="po-kv"><tr><td>Usta</td><td>${esc(j.master||'Təyin edilməyib')}</td></tr><tr><td>İşin statusu</td><td>${esc(j.status||'-')}</td></tr><tr><td>Servis tarixi</td><td>${esc(date)}</td></tr></table></div>
+    <table class="po-total"><tr><td>İş / sifariş məbləği:</td><td>${money(price)}</td></tr><tr class="grand"><td>Ümumi məbləğ:</td><td>${money(price)}</td></tr><tr><td>Ödənilən:</td><td>${money(paid)}</td></tr><tr><td>Qalan:</td><td>${money(remain)}</td></tr></table>
+    <div class="po-sign"><div class="po-warranty"><b>ZƏMANƏT ŞƏRTLƏRİ</b><br>• Görülən işlərə servis tərəfindən müəyyən edilmiş zəmanət şərtləri tətbiq olunur.<br>• Zəmanət yalnız AXM Group Service-də qeydiyyatda olan iş sifarişinə aiddir.<br>• Xarici müdaxilə və qaydalara uyğun olmayan istismar zəmanəti ləğv edə bilər.</div><div class="po-signbox">Müştərinin imzası</div><div class="po-signbox">Servisin imzası / möhür</div></div>
+    <div class="po-foot"><b>AXM GROUP SERVICE</b><span>Keyfiyyətli servis, etibarlı yol!</span></div>`;
+  openM('printOrderModal');
+};
+
 window.changeJobStatus=(id,s)=>{let a=read(K.jobs),j=a.find(x=>x.id===id);if(j){j.status=s;write(K.jobs,a);let cs=read(K.cars),c=cs.find(x=>x.plate===j.plate);if(c){c.status=s;write(K.cars,cs)}note('Status dəyişdirildi')}};window.deleteJob=id=>{if(confirm('İş sifarişi silinsin?')){write(K.jobs,read(K.jobs).filter(x=>x.id!==id));renderOrders()}};
 
 $('addPartBtn').onclick=()=>{$('partForm').reset();$('pId').value='';openM('partEditModal')};$('partSearch').oninput=renderParts;
